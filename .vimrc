@@ -17,7 +17,8 @@ set wrap "wrap lines
 
 set tabstop=2 "make tabs 2 spaces
 set shiftwidth=2 "number of spaces for autoindenting
-set background=dark "set background
+set encoding=utf8 "set standard encoding
+set background=dark "set background color
 set backspace=indent,eol,start "allow backspacing over everything in insert mode
 
 set autoread
