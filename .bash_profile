@@ -12,7 +12,8 @@ fi
 
 gbranch () {
 	if [ -z "$1" ]; then
-		exit
+		echo "You must provide a branch name"
+		return
 	fi
 
 	git fetch
