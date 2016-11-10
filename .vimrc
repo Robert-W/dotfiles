@@ -13,7 +13,6 @@ set showmatch "show matching parenthesis
 set hlsearch "highlight search terms
 set smartcase "ignore case if search pattern is all lowercase
 set visualbell "dont beep
-set wrap "wrap lines
 
 set tabstop=2 "make tabs 2 spaces
 set shiftwidth=2 "number of spaces for autoindenting
