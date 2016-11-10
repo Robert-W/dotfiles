@@ -10,7 +10,7 @@ fi
 # Create a new branch
 ##
 
-branch () {
+gbranch () {
 	if [ -z "$1" ]; then
 		exit
 	fi
@@ -24,6 +24,6 @@ branch () {
 # Prune remote origin of stale branches
 ##
 
-prune () {
+gprune () {
 	git remote prune origin
 }
