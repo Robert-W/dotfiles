@@ -1,6 +1,9 @@
 filetype plugin indent on
 syntax on
 
+"Enable Pathogen
+call pathogen#infect()
+
 set hidden "hide buffers instead of closing them
 set incsearch "show search matches as you type
 set autoindent "autoindent on return
