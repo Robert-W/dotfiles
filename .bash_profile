@@ -4,6 +4,11 @@ if [ ! -f ~/.git-completion.bash ]; then
 fi
 . ~/.git-completion.bash
 
+# Some useful aliases
+
+alias l="ls -al"
+alias lf="ls -CF"
+
 # Some useful git functions
 
 ## 
