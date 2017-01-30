@@ -17,7 +17,7 @@ alias lf="ls -CF"
 
 gbranch () {
 	if [ -z "$1" ]; then
-		echo "You must provide a branch name"
+		git branch
 		return
 	fi
 
