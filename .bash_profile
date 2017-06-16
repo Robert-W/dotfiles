@@ -57,10 +57,13 @@ removeDockerContainers () {
 }
 
 ##
-# Interactively remove images
+# Nuke All Containers, Images, and Volumes 
 ##
-removeDockerInteractive () {
-	echo Write a program that lists all containers in a select and lets the user pick and choose which ones he wants to remove
+nukeDocker () {
+	docker rm $(docker ps -a -q)
+	docker rmi $(docker images -q)
+	docker volume rm $(docker volume ls |awk '{print $2}')
+	rm -rf ~/Library/Containers/com.docker.docker/Data/*
 }
 
 ##############
