@@ -4,6 +4,13 @@ if [ ! -f ~/.git-completion.bash ]; then
 fi
 . ~/.git-completion.bash
 
+##
+# Source the custom prompt if it exists
+##
+if [ -f ~/.bash_prompt ]; then
+	source ~/.bash_prompt;
+fi
+
 ###########################
 # Some useful git functions
 ###########################
