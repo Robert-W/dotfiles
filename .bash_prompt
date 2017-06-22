@@ -36,7 +36,7 @@ prompt_git() {
 
 		[ -n "${s}" ] && s=" [${s}]";
 
-		echo -e " ~ ${1}${branchName}${2}${s}";
+		echo -e "${1} ~ ${2}${branchName}${3}${s}";
 
 	else
 		return;
@@ -48,11 +48,13 @@ if tput setaf 1 &> /dev/null; then
 	# Reset the current colors
 	tput sgr0;
 	yellow=$(tput setaf 226);
+	white=$(tput setaf 15);
 	cyan=$(tput setaf 14);
 	red=$(tput setaf 124);
 	reset=$(tput sgr0);
 else
 	yellow="\e[1;33m";
+	white="\e[1;37m";
 	cyan="\e[1;36m";
 	red="\e[1;31m";
 	reset="\e[0m";
@@ -62,7 +64,7 @@ fi;
 # Let's start with the default value minus the $
 PS1="\h:\W \u";
 # Add our Git status
-PS1+="\$(prompt_git \"\[${yellow}\]\" \"\[${cyan}\]\")";
+PS1+="\$(prompt_git \"\[${white}\]\" \"\[${yellow}\]\" \"\[${cyan}\]\")";
 # Reset our colors
 PS1+="\[${reset}\] ";
 # Export our new prompt
