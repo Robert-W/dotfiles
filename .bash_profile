@@ -15,7 +15,7 @@ fi
 # Some useful git functions
 ###########################
 
-## 
+##
 # Create a new branch
 ##
 
@@ -64,7 +64,7 @@ removeDockerContainers () {
 }
 
 ##
-# Nuke All Containers, Images, and Volumes 
+# Nuke All Containers, Images, and Volumes
 ##
 nukeDocker () {
 	docker rm $(docker ps -a -q)
@@ -99,6 +99,6 @@ alias l="ls -al"
 # Path Updates
 ##############
 
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.fastlane/bin:$PATH"
-
-
