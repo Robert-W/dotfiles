@@ -99,6 +99,16 @@ alias l="ls -al"
 # Path Updates
 ##############
 
+# Golang settings
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
+
+# Fastlane settings for mobile development
 export PATH="$HOME/.fastlane/bin:$PATH"
+
+#######################
+# Environment Variables
+#######################
+
+# Recommended maven settings for Apache Nifi
+export MAVEN_OPTS="-Xms1024m -Xmx3076m -XX:MaxPermSize=256m"
