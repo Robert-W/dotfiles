@@ -7,13 +7,13 @@ precmd() {
 	colors
 }
 
-# Customize VCS Info
+# Customize VCS Info Message Variable
 zstyle ':vcs_info:git*+set-message:*' hooks git-status
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr '%F{cyan}$%f'
-zstyle ':vcs_info:git:*' formats '[%b] %c%m'
+zstyle ':vcs_info:git:*' formats '[%F{cyan}%b%f] %c%m'
 
-# Implement custom git status hook
+# Implement custom git status hook, this will be the %m in formats above
 +vi-git-status() {
   local str='';
 
@@ -23,9 +23,9 @@ zstyle ':vcs_info:git:*' formats '[%b] %c%m'
 		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" '==' 'false' ]; then
 			# Ensure index is up to date
 			git update-index --really-refresh -q &>/dev/null;
-			
+
 			# Check for various statuses
-			
+
 			# Uncommitted changes
 			if ! $(git diff --quiet --ignore-submodules --cached); then
 				str+='+';
@@ -33,26 +33,28 @@ zstyle ':vcs_info:git:*' formats '[%b] %c%m'
 
 			# Unstaged changes
 			if ! $(git diff-files --quiet --ignore-submodules --); then
-				str+='!'
+				str+='!';
 			fi;
 
 			# Untracked files
 			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-				str+='?'
+				str+='?';
 			fi;
 
 			# Stashed files
 			if $(git rev-parse --verify refs/stash &>/dev/null); then
-				str+='$'
+				str+='$';
 			fi;
 
 		fi;
   fi;
 
   # Set a value for str if none has been set yet, its just a hypen for now
-	hook_com[misc]="%F{yellow}${str:--}%f"
+	hook_com[misc]="%F{yellow}${str:--}%f";
 }
 
-# Testing Git integration
+# Finalize Prompt
 setopt PROMPT_SUBST
-PROMPT='${PWD/#$HOME/~} %{$fg_bold[green]%}${vcs_info_msg_0_}%{$reset_color%} %% '
+
+# Format = working_dir [git_branch] git_status %
+PROMPT='%{$fg_bold[white]%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_bold[green]%}${vcs_info_msg_0_}%{$reset_color%} %% ';

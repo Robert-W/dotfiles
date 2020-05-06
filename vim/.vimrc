@@ -2,23 +2,9 @@ filetype plugin indent on
 syntax on
 
 "Pathogen
-call pathogen#infect()
-call pathogen#helptags()
+execute pathogen#infect()
 
-"Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['standard']
-
-"vim-javascript
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
+set laststatus=2
 
 set hidden "hide buffers instead of closing them
 set incsearch "show search matches as you type
@@ -40,4 +26,3 @@ set background=dark "set background color
 set backspace=indent,eol,start "allow backspacing over everything in insert mode
 
 set autoread
-
