@@ -1,9 +1,10 @@
 # Load colors & VCS Info
-autoload -Uz colors vcs_info
+autoload -Uz colors vcs_info compinit
 
 # Run our autoloads
 precmd() {
 	vcs_info
+	compinit
 	colors
 }
 
