@@ -7,18 +7,18 @@ lua << EOF
 local actions = require('telescope.actions')
 
 require('telescope').setup {
-	defaults = {
-		mappings = {
-			n = {
-				["q"] = actions.close,
-                                ["x"] = actions.select_horizontal,
-                                ["v"] = actions.select_vertical,
-			},
-                        i = {
-                                ["x"] = actions.select_horizontal,
-                                ["v"] = actions.select_vertical,
-                        }
-		},
-	},
-}
+  defaults = {
+    mappings = {
+      n = {
+        ["q"] = actions.close,
+        ["x"] = actions.select_horizontal,
+        ["v"] = actions.select_vertical,
+        },
+      i = {
+        ["x"] = actions.select_horizontal,
+        ["v"] = actions.select_vertical,
+        }
+      },
+    },
+  }
 EOF
