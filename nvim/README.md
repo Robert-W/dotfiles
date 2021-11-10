@@ -27,7 +27,7 @@ Once all the files are in place, open up any file with `nvim` and run the follow
 
 ## Optional iTerm configurations
 - Install a [Nerd Font](https://www.nerdfonts.com/) to configure in iTerm. This will give better icon support in the various plugins.
-- Change Profiles > Text > Font-size to 13px
+- Change Profiles > Text > Font-size to something easy to read
 - Change Profiles > Text > Font to the Nerd Font downloaded earlier
 - Turn off General > Closing > Confirm Quit iTerm2
 - Set Profiles > General > WorkingDirectory > Reuse previous sessions working directory
