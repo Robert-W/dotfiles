@@ -12,6 +12,7 @@ set ignorecase
 set cmdheight=1
 set laststatus=2
 set scrolloff=10
+set signcolumn=yes
 
 set smarttab
 set expandtab
@@ -20,3 +21,4 @@ set tabstop=2
 set shiftwidth=2
 set encoding=utf-8
 set background=dark
+set completeopt=menu,menuone,noinsert,noselect

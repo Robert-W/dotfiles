@@ -1,6 +1,34 @@
-local lsp_installer = require("nvim-lsp-installer")
-local cmp           = require("cmp")
+local lsp_installer_servers = require("nvim-lsp-installer/servers")
+local lsp_installer         = require("nvim-lsp-installer")
+local cmp_nvim_lsp          = require("cmp_nvim_lsp")
+local rust_tools            = require("rust-tools")
+local cmp                   = require("cmp")
 
+-- Setup for nvim-cmp
+cmp.setup({
+  snippet = {
+    expand = function (args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4), 
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+  })
+})
+
+-- on_attach function for server
 local function on_attach(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -39,40 +67,70 @@ local function on_attach(client, bufnr)
 
 end
 
--- Finish setup for nvim-cmp
--- completeopt set in ./nvim-cmp.vim
-cmp.setup({
-  snippet = {
-    expand = function (args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4), 
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-  }, {
-    { name = 'buffer' },
-  })
-})
-
 -- Define the capabilities of our cmp so we can pass them into the server setup options
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- We need to initialize rust separately to take advantage of rust-tools extra features
+-- This may change as the API evolves
+local server_available, requested_server = lsp_installer_servers.get_server("rust_analyzer")
+
+if server_available then
+  -- Options specific to rust
+  local rust_opts = {
+    tools = {
+      autoSetHints = true,
+      hover_with_actions = true,
+      runnables = {
+        use_telescope = true
+      },
+      debuggables = {
+        use_telescope = true
+      },
+      inlay_hints = {
+        only_current_line = false,
+        only_current_line_autocmd = "CursorHold",
+        show_parameter_hints = true,
+        parameter_hints_prefix = "<- ",
+        other_hints_prefix = "=> ",
+        max_len_align = false,
+        max_len_align_padding = 1,
+        right_align = false,
+        right_align_padding = 7,
+        highlight = "Comment",
+      }
+    },
+    server = {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      cmd = requested_server._default_options.cmd,
+      settings = {
+        checkOnSave = {
+          command = "clippy"
+        },
+      },
+    },
+  }
+
+  -- This will configure all the rust options we need in LSP
+  rust_tools.setup(rust_opts)
+end
+
+-- Attach all of our configurations
 lsp_installer.on_server_ready(function (server)
-  local opts = {
+  -- Rust was configured above, if we are running the rust analyzer,
+  -- not configure it here with lsp otherwise the commands will not work
+  if server.name == "rust_analyzer" then
+    return
+  end
+
+  -- Generic options for all servers
+  local server_opts = {
     capabilities = capabilities,
     on_attach = on_attach,
   }
 
-  server:setup(opts)
+  -- General setup for all servers
+  server:setup(server_opts)
   vim.cmd [[ do User LspAttachBuffers ]]
 end)
+
