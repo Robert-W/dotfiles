@@ -1,3 +1,14 @@
+# Git Completion
+if [ ! -f ~/.zsh/_git ]; then
+        echo "Downloading git auto-complete"
+        mkdir -p ~/.zsh
+        curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.zsh/git-completion.bash
+        curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh -o ~/.zsh/_git
+fi
+
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+
 # Load colors & VCS Info
 autoload -Uz colors vcs_info compinit
 
