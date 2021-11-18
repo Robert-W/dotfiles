@@ -1,3 +1,4 @@
+nnoremap <silent> ;b <Cmd>Telescope file_browser<CR>
 nnoremap <silent> ;f <Cmd>Telescope find_files<CR>
 nnoremap <silent> ;r <Cmd>Telescope live_grep<CR>
 nnoremap <silent> \\ <Cmd>Telescope buffers<CR>
@@ -10,15 +11,12 @@ require('telescope').setup {
   defaults = {
     mappings = {
       n = {
-        ["q"] = actions.close,
-        ["x"] = actions.select_horizontal,
-        ["v"] = actions.select_vertical,
-        },
-      i = {
-        ["x"] = actions.select_horizontal,
-        ["v"] = actions.select_vertical,
-        }
+        ["<esc>"] = actions.close,
       },
+      i = {
+        ["<esc>"] = actions.close,
+      }
     },
-  }
+  },
+}
 EOF
