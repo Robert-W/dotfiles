@@ -18,5 +18,10 @@ require('telescope').setup {
       },
     },
   },
+  pickers = {
+    file_browser = {
+      hidden = true
+    }
+  }
 }
 EOF
