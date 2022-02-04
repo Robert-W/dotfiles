@@ -5,6 +5,7 @@ nnoremap <silent> \\ <Cmd>Telescope buffers<CR>
 nnoremap <silent> ;; <Cmd>Telescope help_tags<CR>
 
 lua << EOF
+local fb_actions = require 'telescope'.extensions.file_browser.actions
 local actions = require('telescope.actions')
 
 require('telescope').setup {
@@ -18,9 +19,18 @@ require('telescope').setup {
       },
     },
   },
-  pickers = {
+  extensions = {
     file_browser = {
-      hidden = true
+      mappings = {
+        n = {
+          ["<C-c>"] = fb_actions.create,
+          ["<C-d>"] = fb_actions.remove,
+        },
+        i = {
+          ["<C-c>"] = fb_actions.create,
+          ["<C-d>"] = fb_actions.remove,
+        }
+      }
     }
   }
 }
