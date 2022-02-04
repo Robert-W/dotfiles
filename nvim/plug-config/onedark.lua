@@ -1,3 +1,5 @@
-vim.g.onedark_style = 'darker'
+require('onedark').setup {
+  style = 'warmer'
+}
 
-require('onedark').setup()
+require('onedark').load()
