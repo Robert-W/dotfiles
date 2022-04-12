@@ -102,7 +102,7 @@ if server_available then
     server = {
       capabilities = capabilities,
       on_attach = on_attach,
-      cmd = requested_server._default_options.cmd,
+      cmd_env = requested_server._default_options.cmd_env,
       settings = {
         checkOnSave = {
           command = "clippy"
