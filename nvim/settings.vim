@@ -7,12 +7,13 @@ set ruler
 set number
 set nobackup
 set showcmd
-set hlsearch
+set nohlsearch
 set ignorecase
 set cmdheight=1
 set laststatus=2
 set scrolloff=10
 set signcolumn=yes
+set colorcolumn=80
 
 set smarttab
 set expandtab
