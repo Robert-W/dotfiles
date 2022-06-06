@@ -13,8 +13,10 @@ set cmdheight=1
 set laststatus=2
 set scrolloff=10
 set signcolumn=yes
-set textwidth=80
 set colorcolumn=80
+
+set textwidth=80
+au BufWinEnter * set formatoptions-=t
 
 set smarttab
 set expandtab
