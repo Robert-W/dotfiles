@@ -1,8 +1,8 @@
-nnoremap <silent> ;b <Cmd>Telescope file_browser<CR>
-nnoremap <silent> ;f <Cmd>Telescope find_files<CR>
-nnoremap <silent> ;r <Cmd>Telescope live_grep<CR>
-nnoremap <silent> \\ <Cmd>Telescope buffers<CR>
-nnoremap <silent> ;; <Cmd>Telescope help_tags<CR>
+nnoremap <silent> ;b <cmd>Telescope file_browser<CR>
+nnoremap <silent> ;f <cmd>Telescope find_files<CR>
+nnoremap <silent> ;r <cmd>Telescope live_grep<CR>
+nnoremap <silent> \\ <cmd>Telescope buffers<CR>
+nnoremap <silent> ;; <cmd>Telescope help_tags<CR>
 
 lua << EOF
 local fb_actions = require 'telescope'.extensions.file_browser.actions
@@ -19,8 +19,25 @@ require('telescope').setup {
       },
     },
   },
+  pickers = {
+    find_files = {
+      hidden = true,
+      file_ignore_patterns = {
+        'node_modules',
+        '.git',
+      },
+    },
+    live_grep = {
+      hidden = true,
+      file_ignore_patterns = {
+        'node_modules',
+        '.git',
+      },
+    },
+  },
   extensions = {
     file_browser = {
+      hidden = true,
       mappings = {
         n = {
           ["<C-c>"] = fb_actions.create,
