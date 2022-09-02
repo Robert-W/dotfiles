@@ -1,5 +1,5 @@
 # Neovim Setup
-NVIM configurations as of 04/28/22
+NVIM configurations as of 09/01/22
 
 ## Core requirements
 - Python 3
@@ -12,18 +12,19 @@ NVIM configurations as of 04/28/22
 - `brew install --HEAD neovim luajit`
 - `brew install ripgrep iterm2`
 
-## Directory structure
-Copy the following files and directories from this repo into `~/.config/nvim`:
-- `init.vim`
-- `settings.vim`
-- `vim-plug`
-- `plug-config`
-
 ## Nvim commands
 Once all the files are in place, open up any file with `nvim` and run the following:
-- `:PlugInstall`: Installs plugins
-- `:LspInstall rust_analyzer tsserver cssls html terraformls jsonls`: Install language servers
-- `:TSInstall rust javascript typescript css html json scss yaml`: Install treesitter modules
+- `:PackerSync`
+- `:Mason`
+
+### ARM64 Mac Users
+When running Treesitter update/install for language servers. If you are on an
+arm64 MAC you may get some errors about the architecture being incorrect. In
+that case, you need to uninstall all the `*.so` files and re-open nvim on Macs
+native terminal. This will install/re-compile the correct language servers.
+
+Current path to the `*.so` files:
+- `~/.local/share/nvim/site/pack/packer/start/nvim-treesitter/parser`
 
 ## Optional iTerm configurations
 - Install a [Nerd Font](https://www.nerdfonts.com/) to configure in iTerm. This will give better icon support in the various plugins.
