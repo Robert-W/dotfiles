@@ -26,3 +26,9 @@ inoremap("<C-j>", "<esc>:m .+1<CR>==")
 inoremap("<C-k>", "<esc>:m .-2<CR>==")
 nnoremap("<leader>j", ":m .+1<CR>==")
 nnoremap("<leader>k", ":m .-2<CR>==")
+
+-- Create vertical split and open netrw with some cleanup
+nnoremap(
+  "<leader>pv",
+  ":wincmd v<bar> :Ex<bar> :vertical resize 30<bar> :wincmd l<CR>"
+)
