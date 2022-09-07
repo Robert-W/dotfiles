@@ -48,6 +48,7 @@ end
 require("lspconfig").tsserver.setup(make_config())
 require("lspconfig").cssls.setup(make_config())
 require("lspconfig").jsonls.setup(make_config())
+require("lspconfig").rust_analyzer.setup(make_config())
 
 -- Customize specific language servers
 require("lspconfig").sumneko_lua.setup(make_config({

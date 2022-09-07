@@ -23,6 +23,8 @@ require("telescope").setup({
     },
     live_grep = {
       hidden = true,
+      ignore = false,
+      only_sort_text = true,
       file_ignore_patterns = {
         "node_modules",
         ".git",
@@ -35,7 +37,6 @@ require("telescope").setup({
       hidden = true,
       file_ignore_patterns = {
         "node_modules",
-        "/.git"
       },
       mappings = {
         n = {
