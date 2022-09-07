@@ -12,6 +12,10 @@ NVIM configurations as of 09/01/22
 - `brew install --HEAD neovim luajit`
 - `brew install ripgrep iterm2`
 
+## Clone and Link configuration files
+- `git clone git@github.com:Robert-W/dotfiles.git`
+- `ln -s "$(pwd)/nvim" ~/.config/nvim`
+
 ## Nvim commands
 Once all the files are in place, open up any file with `nvim` and run the following:
 - `:PackerSync`
