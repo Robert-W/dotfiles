@@ -2,6 +2,10 @@ local Remap = require("lobak.keymap")
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
+local xnoremap = Remap.xnoremap
+
+-- Paste but keep paste contents in paste register
+xnoremap("<leader>p", "\"_dP")
 
 -- Capitol Y copy til end of line, versus whole line
 nnoremap("Y", "y$")
