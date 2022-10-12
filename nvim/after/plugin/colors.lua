@@ -1,7 +1,7 @@
 require("onedark").setup {
   style = "deep",
   highlights = {
-    ColorColumn = { bg = "#93C35F" }
+    ColorColumn = { bg = "#FFFFFF" }
   },
 }
 

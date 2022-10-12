@@ -10,6 +10,10 @@ nnoremap(";f", function()
   builtin.find_files()
 end)
 
+nnoremap(";d", function ()
+  builtin.diagnostics()
+end)
+
 nnoremap(";r", function()
   builtin.live_grep()
 end)
