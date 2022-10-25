@@ -29,6 +29,7 @@ cmp.setup({
   }),
 })
 
+-- Configurations for all language servers
 local function make_config(opts)
   return vim.tbl_deep_extend("force", {
     capabilities = capabilities,

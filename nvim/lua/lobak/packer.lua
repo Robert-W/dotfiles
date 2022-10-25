@@ -33,4 +33,7 @@ return require("packer").startup(function(use)
   use("nvim-lualine/lualine.nvim")
   use("kyazdani42/nvim-web-devicons")
 
+  -- Language specific things
+  -- use("simrat39/rust-tools.nvim")
+
 end)
