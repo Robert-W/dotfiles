@@ -10,6 +10,11 @@ vim.opt.smarttab = true
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 --vim.opt.smartindent = true
+
+-- Options needed for current companies development setup
+vim.opt.eol = false
+vim.opt.fixeol = false
+
 vim.opt.background = "dark"
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.completeopt = "menu,menuone,noinsert,noselect"
