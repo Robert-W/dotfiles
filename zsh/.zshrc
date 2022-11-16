@@ -70,4 +70,4 @@ setopt PROMPT_SUBST
 
 # Format = working_dir [git_branch] git_status %
 # PROMPT='%{$fg_bold[white]%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_bold[green]%}${vcs_info_msg_0_}%{$reset_color%} %% ';
-PROMPT='${PWD/#$HOME/~} %F{77DD77}(╯°□°)╯︵ ┻━┻%f %B${vcs_info_msg_0_}%b> ';
+PROMPT='%B${PWD/#$HOME/~} %F{77DD77}(╯°□°)╯︵ ┻━┻%f%b ${vcs_info_msg_0_}> ';
