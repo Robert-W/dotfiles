@@ -16,6 +16,7 @@ vim.opt.eol = false
 vim.opt.fixeol = false
 
 vim.opt.background = "dark"
+vim.opt.clipboard = "unnamed"
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.completeopt = "menu,menuone,noinsert,noselect"
 

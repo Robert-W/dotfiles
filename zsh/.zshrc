@@ -19,12 +19,6 @@ precmd() {
   colors
 }
 
-# Customize VCS Info Message Variable
-zstyle ':vcs_info:git*+set-message:*' hooks git-status
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '%F{177}$%f'
-zstyle ':vcs_info:git:*' formats '[%F{177}%b%f] %c%m'
-
 # Implement custom git status hook, this will be the %m in formats above
 +vi-git-status() {
 local str='';
@@ -79,6 +73,15 @@ local str='';
 # Finalize Prompt
 setopt PROMPT_SUBST
 
-# Format = working_dir [git_branch] git_status %
-# PROMPT='%{$fg_bold[white]%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_bold[green]%}${vcs_info_msg_0_}%{$reset_color%} %% ';
-PROMPT='%B${PWD/#$HOME/~} %F{77DD77}(╯°□°)╯︵ ┻━┻%f%b ${vcs_info_msg_0_}> ';
+# Customize VCS Info Message Variable
+zstyle ':vcs_info:git*+set-message:*' hooks git-status
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr '%F{219}$%f'
+zstyle ':vcs_info:git:*' formats 'on %F{219}%b%f%c%m'
+
+# Customize our prompt over multiple lines
+# Other fun font icons for prompt
+#  ➜ ﯜ 
+NEWLINE=$'\n'
+PROMPT='%F{123}${PWD/#$HOME/~}%b%f${NEWLINE}%F{219}  %f${vcs_info_msg_0_}${NEWLINE}%B%F{85}  %f%b';
+
