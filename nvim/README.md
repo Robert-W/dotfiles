@@ -5,12 +5,12 @@ NVIM configurations as of 09/01/22
 - Python 3
 - Homebrew
 
-## Python packages
+## Python packages (might not need anymore)
 - `pip3 install pynvim`
 
 ## Brew packages
 - `brew install --HEAD neovim luajit`
-- `brew install ripgrep iterm2`
+- `brew install ripgrep`
 
 ## Clone and Link configuration files
 - `git clone git@github.com:Robert-W/dotfiles.git`
@@ -29,10 +29,3 @@ native terminal. This will install/re-compile the correct language servers.
 
 Current path to the `*.so` files:
 - `~/.local/share/nvim/site/pack/packer/start/nvim-treesitter/parser`
-
-## Optional iTerm configurations
-- Install a [Nerd Font](https://www.nerdfonts.com/) to configure in iTerm. This will give better icon support in the various plugins.
-- Change Profiles > Text > Font-size to something easy to read
-- Change Profiles > Text > Font to the Nerd Font downloaded earlier
-- Turn off General > Closing > Confirm Quit iTerm2
-- Set Profiles > General > WorkingDirectory > Reuse previous sessions working directory
