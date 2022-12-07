@@ -60,14 +60,14 @@ local str='';
       fi;
 
       if [ $is_modified -eq 1 ]; then
-        str+=' ';
+        str="[${str}]";
       fi;
 
     fi;
   fi;
 
   # Set a value for str if none has been set yet, its just a hypen for now
-  hook_com[misc]="%F{yellow}${str}%f";
+  hook_com[misc]="%F{229} ${str}%f";
 }
 
 # Finalize Prompt
@@ -80,8 +80,20 @@ zstyle ':vcs_info:git:*' stagedstr '%F{219}$%f'
 zstyle ':vcs_info:git:*' formats 'on %F{219}%b%f%c%m'
 
 # Customize our prompt over multiple lines
-# Other fun font icons for prompt
-#  ➜ ﯜ 
+# Fun font icons for prompt, these need Operator Mono Nerd Font
+# ﯜ = U+FBDC
+#  = U+F43B
+#  = U+E245
+#  = U+F6E4
+#  = U+F42E
+# ➜ = U+279C
 NEWLINE=$'\n'
-PROMPT='%F{123}${PWD/#$HOME/~}%b%f${NEWLINE}%F{219}  %f${vcs_info_msg_0_}${NEWLINE}%B%F{85}  %f%b';
+PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${NEWLINE}%F{219}\UE245  %f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
 
+# Older prompts
+# PROMPT='%{$fg_bold[white]%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_bold[green]%}${vcs_info_msg_0_}%{$reset_color%} %% ';
+# PROMPT='%B${PWD/#$HOME/~} %F{77DD77}(╯°□°)╯︵ ┻━┻%f%b ${vcs_info_msg_0_}> ';
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
