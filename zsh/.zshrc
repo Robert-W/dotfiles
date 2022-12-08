@@ -60,14 +60,16 @@ local str='';
       fi;
 
       if [ $is_modified -eq 1 ]; then
-        str="[${str}]";
+        str="%F{229}[${str}]%f";
+      else
+        str=$'\UF6C8'
       fi;
 
     fi;
   fi;
 
   # Set a value for str if none has been set yet, its just a hypen for now
-  hook_com[misc]="%F{229} ${str}%f";
+  hook_com[misc]=" ${str}";
 }
 
 # Finalize Prompt
@@ -84,8 +86,10 @@ zstyle ':vcs_info:git:*' formats 'on %F{219}%b%f%c%m'
 # ﯜ = U+FBDC
 #  = U+F43B
 #  = U+E245
+#  = U+F7A9
 #  = U+F6E4
 #  = U+F42E
+#  = U+F6C8
 # ➜ = U+279C
 NEWLINE=$'\n'
 PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${NEWLINE}%F{219}\UE245  %f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
