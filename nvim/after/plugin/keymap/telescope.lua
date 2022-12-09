@@ -18,7 +18,8 @@ nnoremap(";r", function()
   builtin.live_grep()
 end)
 
-nnoremap("\\", function()
+-- This is equal to \\ due to escaping
+nnoremap("\\\\", function()
   builtin.buffers()
 end)
 
