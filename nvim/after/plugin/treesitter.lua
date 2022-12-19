@@ -4,6 +4,7 @@ end
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
+    "help",
     "rust",
     "javascript",
     "typescript",
@@ -14,6 +15,7 @@ require("nvim-treesitter.configs").setup({
     "yaml",
     "lua",
   },
+  sync_install = false,
   autotag = {
     enable = true,
   },
@@ -23,9 +25,9 @@ require("nvim-treesitter.configs").setup({
   },
   highlight = {
     enable = true,
+    additional_vim_regex_highlighting = false,
     disable = function(lang, bufnr)
       return gonnaSlowMeDown(lang, bufnr)
     end,
-    additional_vim_regex_highlighting = false,
   }
 })

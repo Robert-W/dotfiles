@@ -1,5 +1,5 @@
 # Neovim Setup
-NVIM configurations as of 09/01/22
+NVIM configurations as of 12/18/22
 
 ## Core requirements
 - Python 3
@@ -19,7 +19,6 @@ NVIM configurations as of 09/01/22
 ## Nvim commands
 Once all the files are in place, open up any file with `nvim` and run the following:
 - `:PackerSync`
-- `:Mason`
 
 ### ARM64 Mac Users
 When running Treesitter update/install for language servers. If you are on an

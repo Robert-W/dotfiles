@@ -1,73 +1,84 @@
-local Remap = require("lobak.keymap")
-local nnoremap = Remap.nnoremap
-local cmp = require("cmp")
+local lsp = require('lsp-zero')
+local cmp = require('cmp')
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- Use the recommended presets from lsp-zero
+lsp.preset('recommended')
 
--- Setup for nvim-cmp
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({
+-- Install LSP
+lsp.ensure_installed({
+  'rust_analyzer',
+  'terraformls',
+  'sumneko_lua',
+  'tsserver',
+  'eslint',
+  'jsonls',
+  'cssls',
+  'html',
+})
+
+-- Fix undefined global 'vim'
+lsp.configure('sumneko_lua', {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
+})
+
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
+lsp.setup_nvim_cmp({
+  mappings = lsp.defaults.cmp_mappings({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-q>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
-    { name = 'buffer' },
-  }),
+  })
 })
 
--- Configurations for all language servers
-local function make_config(opts)
-  return vim.tbl_deep_extend("force", {
-    capabilities = capabilities,
-    on_attach = function()
-      nnoremap("gd", function() vim.lsp.buf.definition() end)
-      nnoremap("gi", function() vim.lsp.buf.implementation() end)
-      nnoremap("gr", "<CMD>Telescope lsp_references<Cr>")
-      nnoremap("<leader>rn", function() vim.lsp.buf.rename() end)
-      nnoremap("gf", function()
-        vim.lsp.buf.format({ timeout_ms = 10000, async = false })
-      end)
-    end
-  }, opts or {})
-end
+lsp.set_preferences({
+  suggest_lsp_servers = false,
+  sign_icons = {
+    error = 'E',
+    warn = 'W',
+    hint = 'H',
+    info = 'I'
+  }
+})
 
--- Configure various language servers
-require("lspconfig").tsserver.setup(make_config())
-require("lspconfig").cssls.setup(make_config())
-require("lspconfig").jsonls.setup(make_config())
-require("lspconfig").rust_analyzer.setup(make_config())
+lsp.on_attach(function(client, bufnr)
+  local opts = { buffer = bufnr, remap = false }
 
--- Customize specific language servers
-require("lspconfig").sumneko_lua.setup(make_config({
-  settings = {
-    Lua = {
-      runtime = {
-        version = "LuaJIT",
-        path = vim.split(package.path, "")
-      },
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-        }
-      },
-    },
-  },
-}))
+  if client.name == 'eslint' then
+    vim.cmd.LspStop('eslint')
+    return
+  end
+
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', 'gr', '<CMD>Telescope lsp_references', opts)
+  vim.keymap.set('n', 'gk', '<Cmd>Lspsaga hover_doc<CR>', opts)
+  vim.keymap.set('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
+  vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
+
+  vim.keymap.set('n', 'gf', function ()
+    vim.lsp.buf.format({ timeout_ms = 10000 })
+  end, opts)
+
+  vim.keymap.set('n', '<leader>rn', '<Cmd>Lspsaga rename<CR>', opts)
+  vim.keymap.set('n', '<leader>ca', '<Cmd>Lspsaga code_action<CR>', opts)
+  vim.keymap.set('n', '<leader>e', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
+
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+
+end)
+
+lsp.setup()
+
+vim.diagnostic.config({ virtual_text = true })

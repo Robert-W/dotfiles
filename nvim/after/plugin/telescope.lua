@@ -1,7 +1,18 @@
 local browser_actions = require("telescope").extensions.file_browser.actions
 local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
+local telescope = require("telescope")
 
-require("telescope").setup({
+-- Add some useful remaps
+vim.keymap.set('n', ';b', telescope.extensions.file_browser.file_browser)
+vim.keymap.set('n', ';f', builtin.find_files)
+vim.keymap.set('n', ';d', builtin.diagnostics)
+vim.keymap.set('n', ';r', builtin.live_grep)
+vim.keymap.set('n', ';;', builtin.help_tags)
+-- Maps to \\ due to escaping
+vim.keymap.set('n', '\\\\',builtin.buffers)
+
+telescope.setup({
   defaults = {
     mappings = {
       n = {
@@ -52,4 +63,4 @@ require("telescope").setup({
   }
 })
 
-require("telescope").load_extension("file_browser")
+telescope.load_extension("file_browser")

@@ -1,1 +1,1 @@
-require("lobak")
+require('lobak')
