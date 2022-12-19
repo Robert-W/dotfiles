@@ -1,8 +1,8 @@
-require("onedark").setup {
-  style = "deep",
+require('onedark').setup {
+  style = 'warmer',
   highlights = {
-    ColorColumn = { bg = "#FFFFFF" }
+    ColorColumn = { bg = '#FFFFFF' }
   },
 }
 
-require("onedark").load()
+require('onedark').load()
