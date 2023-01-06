@@ -8,9 +8,9 @@ local LobakGroup = augroup('Lobak', {})
 local TextFormatGroup = augroup("TextFormat", { clear = true })
 
 autocmd({"BufWritePre"}, {
-	group = LobakGroup,
-	pattern = "*",
-	command = [[%s/\s\+$//e]],
+  group = LobakGroup,
+  pattern = "*",
+  command = [[%s/\s\+$//e]],
 })
 
 -- Allow code to exceed vim.opt.textwidth
