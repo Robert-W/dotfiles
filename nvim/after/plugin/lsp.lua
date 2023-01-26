@@ -61,9 +61,11 @@ lsp.on_attach(function(client, bufnr)
 
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', 'gr', '<CMD>Telescope lsp_references', opts)
+  vim.keymap.set('n', 'gr', '<Cmd>Telescope lsp_references<CR>', opts)
   vim.keymap.set('n', 'gk', '<Cmd>Lspsaga hover_doc<CR>', opts)
   vim.keymap.set('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
+  vim.keymap.set('n', 'gic', '<Cmd>Lspsaga incoming_calls<CR>', opts)
+  vim.keymap.set('n', 'goc', '<Cmd>Lspsaga outgoing_calls<CR>', opts)
   vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
 
   vim.keymap.set('n', 'gf', function ()

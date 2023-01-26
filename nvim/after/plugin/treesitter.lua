@@ -8,6 +8,7 @@ require("nvim-treesitter.configs").setup({
     "rust",
     "javascript",
     "typescript",
+    "markdown",
     "jsdoc",
     "css",
     "html",
