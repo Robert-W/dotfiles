@@ -8,16 +8,16 @@ lsp.preset('recommended')
 lsp.ensure_installed({
   'rust_analyzer',
   'terraformls',
-  'sumneko_lua',
   'tsserver',
   'eslint',
+  'lua_ls',
   'jsonls',
   'cssls',
   'html',
 })
 
 -- Fix undefined global 'vim'
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
   settings = {
     Lua = {
       diagnostics = {
