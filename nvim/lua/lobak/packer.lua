@@ -16,6 +16,9 @@ return require("packer").startup(function(use)
   use("nvim-telescope/telescope.nvim")
   use("nvim-telescope/telescope-file-browser.nvim")
 
+  -- Git Integrations
+  use('tpope/vim-fugitive')
+
   -- LSP made easy
   use {
     'VonHeikemen/lsp-zero.nvim',
