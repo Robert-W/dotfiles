@@ -1,5 +1,5 @@
 require('onedark').setup {
-  style = 'warmer',
+style = 'deep',
   highlights = {
     ColorColumn = { bg = '#FFFFFF' }
   },
