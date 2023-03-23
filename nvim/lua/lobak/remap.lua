@@ -26,3 +26,6 @@ vim.keymap.set("i", "<C-j>", "<esc>:m .+1<CR>==")
 vim.keymap.set("i", "<C-k>", "<esc>:m .-2<CR>==")
 vim.keymap.set("n", "<leader>j", ":m .+1<CR>==")
 vim.keymap.set("n", "<leader>k", ":m .-2<CR>==")
+
+-- Create vertical split and open netrw
+vim.keymap.set("n", "<leader>rw", ":wincmd v<bar> :Ex<bar> :vertical resize 30<bar> :wincmd l<CR>")
