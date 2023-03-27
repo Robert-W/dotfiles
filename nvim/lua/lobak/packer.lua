@@ -42,4 +42,15 @@ return require("packer").startup(function(use)
     }
   }
 
+  -- :Neotree is a file system/tree browser
+  use {
+  'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
+    requires = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+    }
+  }
+
 end)
