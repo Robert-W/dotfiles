@@ -4,7 +4,8 @@ local builtin = require("telescope.builtin")
 local telescope = require("telescope")
 
 -- Add some useful remaps
-vim.keymap.set('n', ';b', telescope.extensions.file_browser.file_browser)
+-- vim.keymap.set('n', ';b', telescope.extensions.file_browser.file_browser)
+vim.keymap.set('n', ';b', ":Telescope file_browser path=%:p:h=%:p:h<cr>")
 vim.keymap.set('n', ';f', builtin.find_files)
 vim.keymap.set('n', ';d', builtin.diagnostics)
 vim.keymap.set('n', ';r', builtin.live_grep)
