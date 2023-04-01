@@ -9,6 +9,7 @@ require("nvim-treesitter.configs").setup({
     "javascript",
     "typescript",
     "markdown",
+    "markdown_inline",
     "jsdoc",
     "css",
     "html",

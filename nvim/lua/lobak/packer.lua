@@ -6,7 +6,8 @@ return require("packer").startup(function(use)
   -- Theme/Syntax/Formatting
   use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
   use("editorconfig/editorconfig-vim")
-  use("navarasu/onedark.nvim")
+  -- use("navarasu/onedark.nvim")
+  use("folke/tokyonight.nvim")
   use("nvim-lualine/lualine.nvim")
   use("kyazdani42/nvim-web-devicons")
 
