@@ -1,21 +1,21 @@
-return require("packer").startup(function(use)
+return require('packer').startup(function(use)
 
   -- Packer can manage itself
-  use("wbthomason/packer.nvim")
+  use('wbthomason/packer.nvim')
 
   -- Theme/Syntax/Formatting
-  use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-  use("editorconfig/editorconfig-vim")
-  -- use("navarasu/onedark.nvim")
-  use("folke/tokyonight.nvim")
-  use("nvim-lualine/lualine.nvim")
-  use("kyazdani42/nvim-web-devicons")
+  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+  use('editorconfig/editorconfig-vim')
+  use('folke/tokyonight.nvim')
+  use('nvim-lualine/lualine.nvim')
+  use('nvim-tree/nvim-web-devicons')
+  use('windwp/nvim-autopairs')
 
   -- Treesitter related plugins
-  use("nvim-lua/popup.nvim")
-  use("nvim-lua/plenary.nvim")
-  use("nvim-telescope/telescope.nvim")
-  use("nvim-telescope/telescope-file-browser.nvim")
+  use('nvim-lua/popup.nvim')
+  use('nvim-lua/plenary.nvim')
+  use('nvim-telescope/telescope.nvim')
+  use('nvim-telescope/telescope-file-browser.nvim')
 
   -- Git Integrations
   use('tpope/vim-fugitive')
