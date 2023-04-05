@@ -6,10 +6,10 @@ return require('packer').startup(function(use)
   -- Theme/Syntax/Formatting
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
   use('editorconfig/editorconfig-vim')
-  use('folke/tokyonight.nvim')
   use('nvim-lualine/lualine.nvim')
   use('nvim-tree/nvim-web-devicons')
   use('windwp/nvim-autopairs')
+  use('rebelot/kanagawa.nvim')
 
   -- Treesitter related plugins
   use('nvim-lua/popup.nvim')
