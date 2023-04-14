@@ -29,8 +29,8 @@ lsp.configure('lua_ls', {
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
-lsp.setup_nvim_cmp({
-  mappings = lsp.defaults.cmp_mappings({
+cmp.setup({
+  mapping = {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
@@ -38,7 +38,7 @@ lsp.setup_nvim_cmp({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-q>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  })
+  }
 })
 
 lsp.set_preferences({
@@ -75,6 +75,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', '<leader>rn', '<Cmd>Lspsaga rename<CR>', opts)
   vim.keymap.set('n', '<leader>ca', '<Cmd>Lspsaga code_action<CR>', opts)
   vim.keymap.set('n', '<leader>e', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
+  vim.keymap.set('n', '<leader>E', '<Cmd>Lspsaga show_buf_diagnostics<CR>', opts)
 
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)

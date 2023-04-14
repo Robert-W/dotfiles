@@ -1,6 +1,6 @@
 require('lobak.set')
 require('lobak.remap')
-require('lobak.packer')
+require('lobak.lazy')
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup

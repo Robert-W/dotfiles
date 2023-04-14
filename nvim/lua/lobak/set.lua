@@ -1,4 +1,3 @@
--- vim.opt.guicursor = ""
 vim.g.mapleader = " "
 
 -- netrw settings

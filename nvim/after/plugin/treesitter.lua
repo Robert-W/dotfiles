@@ -4,7 +4,6 @@ end
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    "help",
     "rust",
     "javascript",
     "typescript",
@@ -16,6 +15,9 @@ require("nvim-treesitter.configs").setup({
     "json",
     "yaml",
     "lua",
+    "vim",
+    "regex",
+    "bash"
   },
   sync_install = false,
   autotag = {
