@@ -1,5 +1,5 @@
 require('nvim-autopairs').setup({
   fast_wrap = {
-    map = '<C-b>'
+    map = '<C-a>'
   }
 })

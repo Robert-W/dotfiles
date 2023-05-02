@@ -1,12 +1,15 @@
 # Git Completion
-if [ ! -f ~/.zsh/_git ]; then
-  echo "Downloading git auto-complete"
+if [ ! -f ~/.zsh/git-completion.zsh ]; then
+  echo "Downloading git auto-complete for zsh"
   mkdir -p ~/.zsh
-  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.zsh/git-completion.bash
-  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh -o ~/.zsh/_git
+  curl -o ~/.zsh/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+  curl -o ~/.zsh/git-completion.zsh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
 fi
 
+# Tell the shell how to give us inline hints
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+
+# Add functions from zsh completion
 fpath=(~/.zsh $fpath)
 
 # Load colors & VCS Info
@@ -79,7 +82,7 @@ setopt PROMPT_SUBST
 zstyle ':vcs_info:git*+set-message:*' hooks git-status
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr '%F{219}$%f'
-zstyle ':vcs_info:git:*' formats 'on %F{219}%b%f%c%m'
+zstyle ':vcs_info:git:*' formats ' on %F{219}%b%f%c%m'
 
 # Customize our prompt over multiple lines
 # Fun font icons for prompt, these need Operator Mono Nerd Font
@@ -92,9 +95,10 @@ zstyle ':vcs_info:git:*' formats 'on %F{219}%b%f%c%m'
 #  = U+F6C8
 # ➜ = U+279C
 NEWLINE=$'\n'
-PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${NEWLINE}%F{219}\UE245  %f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
+PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
 
 # Older prompts
+# PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${NEWLINE}%F{219}\UE245  %f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
 # PROMPT='%{$fg_bold[white]%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_bold[green]%}${vcs_info_msg_0_}%{$reset_color%} %% ';
 # PROMPT='%B${PWD/#$HOME/~} %F{77DD77}(╯°□°)╯︵ ┻━┻%f%b ${vcs_info_msg_0_}> ';
 
