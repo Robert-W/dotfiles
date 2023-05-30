@@ -97,11 +97,50 @@ zstyle ':vcs_info:git:*' formats ' on %F{219}%b%f%c%m'
 NEWLINE=$'\n'
 PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
 
-# Older prompts
-# PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${NEWLINE}%F{219}\UE245  %f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
-# PROMPT='%{$fg_bold[white]%}${PWD/#$HOME/~}%{$reset_color%} %{$fg_bold[green]%}${vcs_info_msg_0_}%{$reset_color%} %% ';
-# PROMPT='%B${PWD/#$HOME/~} %F{77DD77}(╯°□°)╯︵ ┻━┻%f%b ${vcs_info_msg_0_}> ';
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Helpful Functions, requires JQ and awscli, brew install jq awscli
+aws-login() {
+  if [ -z "${1}" ]; then
+    echo "Usage: aws-login AWS_PROFILE" 1>&2
+    return
+  fi
+
+  if ! command -V jq > /dev/null; then
+    echo "The jq command is required for this function to work."
+    return
+  fi
+
+  SSO_START_URL=$(aws configure get "profile.${1}.sso_start_url")
+
+  if [ -z "${SSO_START_URL}" ]; then
+    echo "profile (${1}) not configured for sso; Missing sso_start_url" 1>&2
+    return
+  fi
+
+  ACCESS_TOKEN=$(cat ~/.aws/sso/cache/*.json | jq -r --arg url "${SSO_START_URL}" 'select(.startUrl==$url).accessToken')
+  SSO_ACCOUNT_ID=$(aws configure get "profile.${1}.sso_account_id")
+  SSO_ROLE_NAME=$(aws configure get "profile.${1}.sso_role_name")
+  CREDS=$(aws sso get-role-credentials --account-id "${SSO_ACCOUNT_ID}" --role-name "${SSO_ROLE_NAME}" --access-token "${ACCESS_TOKEN}" --profile "${1}" 2>/dev/null)
+
+  if [ "$?" != "0" ]; then
+    aws sso login --profile "${1}" &>/dev/null
+    ACCESS_TOKEN=$(cat ~/.aws/sso/cache/*.json | jq -r --arg url "${SSO_START_URL}" 'select(.startUrl==$url).accessToken')
+    CREDS=$(aws sso get-role-credentials --account-id "${SSO_ACCOUNT_ID}" --role-name "${SSO_ROLE_NAME}" --access-token "${ACCESS_TOKEN}" --profile "${1}")
+  fi
+
+  export AWS_ACCESS_KEY_ID=$(jq -r '.roleCredentials.accessKeyId' <<< "${CREDS}")
+  export AWS_SECRET_ACCESS_KEY=$(jq -r '.roleCredentials.secretAccessKey' <<< "${CREDS}")
+  export AWS_SESSION_TOKEN=$(jq -r '.roleCredentials.sessionToken' <<< "${CREDS}")
+  export AWS_PROFILE="${1}"
+}
+
+aws-logout() {
+  unset AWS_ACCESS_KEY_ID
+  unset AWS_SECRET_ACCESS_KEY
+  unset AWS_SESSION_TOKEN
+  unset AWS_PROFILE
+  aws sso logout
+}

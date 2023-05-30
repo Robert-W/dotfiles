@@ -22,6 +22,7 @@ require('lazy').setup({
   },
   'nvim-lualine/lualine.nvim',
   'windwp/nvim-autopairs',
+  'lukas-reineke/indent-blankline.nvim',
   {
     'rebelot/kanagawa.nvim',
     lazy = false,

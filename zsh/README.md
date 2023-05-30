@@ -2,10 +2,10 @@
 zsh configurations as of 12/07/22
 
 ## Core requirements
-- wezterm
+- iTerm2
 
 ## Brew packages
-- `brew install --cask wezterm`
+- `brew install iterm2`
 
 ## Clone and Link configuration files
 - `git clone git@github.com:Robert-W/dotfiles.git`
