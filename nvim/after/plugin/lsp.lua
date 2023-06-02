@@ -64,10 +64,8 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'gr', '<Cmd>Telescope lsp_references<CR>', opts)
   vim.keymap.set('n', 'gk', '<Cmd>Lspsaga hover_doc<CR>', opts)
   vim.keymap.set('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
-  -- Decide if we want to remove these and/or LSPSaga. Starting keymaps with
-  -- o or i can cause slowness in the editor anytime we use o or i
-  -- vim.keymap.set('n', 'ic', '<Cmd>Lspsaga incoming_calls<CR>', opts)
-  -- vim.keymap.set('n', 'oc', '<Cmd>Lspsaga outgoing_calls<CR>', opts)
+  vim.keymap.set('n', 'gci', '<Cmd>Lspsaga incoming_calls<CR>', opts)
+  vim.keymap.set('n', 'gco', '<Cmd>Lspsaga outgoing_calls<CR>', opts)
   vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
 
   vim.keymap.set('n', 'gf', function ()
