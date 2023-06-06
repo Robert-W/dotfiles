@@ -54,28 +54,22 @@ lsp.set_preferences({
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
-  -- if client.name == 'eslint' then
-  --   vim.cmd.LspStop('eslint')
-  --   return
-  -- end
-
+  vim.keymap.set('n', 'gk', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
   vim.keymap.set('n', 'gr', '<Cmd>Telescope lsp_references<CR>', opts)
-  vim.keymap.set('n', 'gk', '<Cmd>Lspsaga hover_doc<CR>', opts)
-  vim.keymap.set('n', 'gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
-  vim.keymap.set('n', 'gci', '<Cmd>Lspsaga incoming_calls<CR>', opts)
-  vim.keymap.set('n', 'gco', '<Cmd>Lspsaga outgoing_calls<CR>', opts)
+  vim.keymap.set('n', 'gci', vim.lsp.buf.incoming_calls, opts)
+  vim.keymap.set('n', 'gco', vim.lsp.buf.outgoing_calls, opts)
   vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
 
   vim.keymap.set('n', 'gf', function ()
     vim.lsp.buf.format({ timeout_ms = 10000 })
   end, opts)
 
-  vim.keymap.set('n', '<leader>rn', '<Cmd>Lspsaga rename<CR>', opts)
-  vim.keymap.set('n', '<leader>ca', '<Cmd>Lspsaga code_action<CR>', opts)
-  vim.keymap.set('n', '<leader>e', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts)
-  vim.keymap.set('n', '<leader>E', '<Cmd>Lspsaga show_buf_diagnostics<CR>', opts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+  vim.keymap.set('n', '<leader>E', '<Cmd>Telescope diagnostics bufnr=0<CR>', opts)
 
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)

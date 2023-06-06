@@ -20,6 +20,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate'
   },
+  'nvim-treesitter/nvim-treesitter-context',
   'nvim-lualine/lualine.nvim',
   'windwp/nvim-autopairs',
   'lukas-reineke/indent-blankline.nvim',
@@ -29,7 +30,7 @@ require('lazy').setup({
     priority = 1000
   },
 
-  -- Treesitter related plugins
+  -- Telescope related plugins
   'nvim-lua/popup.nvim',
   'nvim-lua/plenary.nvim',
   'nvim-telescope/telescope.nvim',
@@ -54,7 +55,6 @@ require('lazy').setup({
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
-      'glepnir/lspsaga.nvim',
 
       -- Snippets
       'L3MON4D3/LuaSnip',
