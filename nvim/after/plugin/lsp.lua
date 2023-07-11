@@ -52,28 +52,21 @@ lsp.set_preferences({
 })
 
 lsp.on_attach(function(client, bufnr)
-  local opts = { buffer = bufnr, remap = false }
+  vim.keymap.set('n', 'gk', vim.lsp.buf.hover, { buffer = bufnr, remap = false, desc = 'Show hover information for the symbol' })
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr, remap = false, desc = 'Jump to the definition of the symbol' })
+  vim.keymap.set('n', 'gm', vim.lsp.buf.implementation, { buffer = bufnr, remap = false, desc = 'Show implementation for the symbol' })
+  vim.keymap.set('n', 'gr', '<Cmd>Telescope lsp_references<CR>', { buffer = bufnr, remap = false, desc = 'Show references to the symbol' })
+  vim.keymap.set('n', 'gc', vim.lsp.buf.incoming_calls, { buffer = bufnr, remap = false, desc = 'Show call sites of the symbol' })
+  vim.keymap.set('n', 'go', vim.lsp.buf.outgoing_calls, { buffer = bufnr, remap = false, desc = 'Show items called by the symbol' })
+  vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, { buffer = bufnr, remap = false, desc = 'Show signature information' })
 
-  vim.keymap.set('n', 'gk', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', 'gr', '<Cmd>Telescope lsp_references<CR>', opts)
-  vim.keymap.set('n', 'gci', vim.lsp.buf.incoming_calls, opts)
-  vim.keymap.set('n', 'gco', vim.lsp.buf.outgoing_calls, opts)
-  vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts)
-
-  vim.keymap.set('n', 'gf', function ()
+  vim.keymap.set('n', 'gp', function()
     vim.lsp.buf.format({ timeout_ms = 10000 })
-  end, opts)
+  end, { buffer = bufnr, remap = false, desc = 'Format current buffer with attached LSP' })
 
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
-  vim.keymap.set('n', '<leader>E', '<Cmd>Telescope diagnostics bufnr=0<CR>', opts)
-
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-
+  vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = bufnr, remap = false, desc = 'Rename variable' })
+  vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, { buffer = bufnr, remap = false, desc = 'Perform code actions' })
+  vim.keymap.set('n', '<leader>e', '<Cmd>Telescope diagnostics bufnr=0<CR>', { buffer = bufnr, remap = false, desc = 'Open file diagnostics' })
 end)
 
 lsp.setup()

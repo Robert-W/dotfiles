@@ -1,7 +1,7 @@
-local neotree = require("neo-tree")
+local neotree = require('neo-tree')
 
 -- Neotree remaps
-vim.keymap.set('n', ';nt', ":Neotree toggle<cr>")
+vim.keymap.set('n', '<leader>t', ':Neotree toggle<cr>', { desc = 'Toggle Neotree' })
 
 neotree.setup({
   filesystem = {

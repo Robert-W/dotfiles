@@ -25,7 +25,7 @@ require('lazy').setup({
   'windwp/nvim-autopairs',
   'lukas-reineke/indent-blankline.nvim',
   {
-    'rebelot/kanagawa.nvim',
+    'catppuccin/nvim',
     lazy = false,
     priority = 1000
   },
@@ -84,6 +84,15 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
     }
+  },
+
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 500
+    end
   }
 
 })
