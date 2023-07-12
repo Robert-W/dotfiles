@@ -66,6 +66,7 @@ lsp.on_attach(function(client, bufnr)
 
   vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = bufnr, remap = false, desc = 'Rename variable' })
   vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, { buffer = bufnr, remap = false, desc = 'Perform code actions' })
+  vim.keymap.set('n', '<leader>l', vim.diagnostic.open_float, { buffer = bufnr, remap = false, desc = 'Open line diagnostics' })
   vim.keymap.set('n', '<leader>e', '<Cmd>Telescope diagnostics bufnr=0<CR>', { buffer = bufnr, remap = false, desc = 'Open file diagnostics' })
 end)
 
