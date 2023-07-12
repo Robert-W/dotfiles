@@ -39,20 +39,6 @@ require('lazy').setup({
   -- Git Integrations
   'tpope/vim-fugitive',
 
-  -- Testing setup
-  {
-    'nvim-neotest/neotest',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'antoinemadec/FixCursorHold.nvim',
-      -- adapters
-      'nvim-neotest/neotest-go',
-      'haydenmeade/neotest-jest',
-      'nvim-neotest/neotest-plenary',
-    }
-  },
-
   -- LSP made easy
   {
     'VonHeikemen/lsp-zero.nvim',
