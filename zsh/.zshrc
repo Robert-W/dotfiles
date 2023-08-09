@@ -66,9 +66,11 @@ setopt PROMPT_SUBST
 
 # Customize VCS Info Message Variable
 zstyle ':vcs_info:git*+set-message:*' hooks git-status
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '%F{219}$%f'
-zstyle ':vcs_info:git:*' formats ' on %F{219}%b%f%c%m'
+# zstyle ':vcs_info:git:*' check-for-changes true
+# zstyle ':vcs_info:git:*' stagedstr '%F{219}$%f'
+# Enabling the two commands above allows for %c to be set for the formats
+# and shows stagedstr when there are committed changes
+zstyle ':vcs_info:git:*' formats ' on %F{219}%b%f%m'
 
 # Customize our prompt over multiple lines
 # Fun font icons for prompt, these need Operator Mono Nerd Font
