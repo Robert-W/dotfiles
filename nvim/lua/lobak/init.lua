@@ -7,14 +7,14 @@ local augroup = vim.api.nvim_create_augroup
 local LobakGroup = augroup('Lobak', {})
 local TextFormatGroup = augroup("TextFormat", { clear = true })
 
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
   group = LobakGroup,
   pattern = "*",
   command = [[%s/\s\+$//e]],
 })
 
 -- Allow code to exceed vim.opt.textwidth
-autocmd({"BufWinEnter"}, {
+autocmd({ "BufWinEnter" }, {
   group = TextFormatGroup,
   buffer = 0,
   command = "set formatoptions-=t"
