@@ -85,12 +85,9 @@ zstyle ':vcs_info:git:*' formats ' on %F{219}%b%f%m'
 NEWLINE=$'\n'
 PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
 
-# This slows down zsh quite a bit, may need to find a way to speed this up or
-# delay the loading of it if it gets worse
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Testing, load functions from external directory
 fpath=(~/.zfunc $fpath)
 autoload ${fpath[1]}/*(:t)
+
+# Fix Docker builds on Apple Silicon so they deploy correctly to AWS
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
