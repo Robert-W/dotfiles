@@ -16,10 +16,6 @@ NVIM configurations as of 12/18/22
 - `git clone git@github.com:Robert-W/dotfiles.git`
 - `ln -s "$(pwd)/nvim" ~/.config/nvim`
 
-## Nvim commands
-Once all the files are in place, open up any file with `nvim` and run the following:
-- `:PackerSync`
-
 ### ARM64 Mac Users
 When running Treesitter update/install for language servers. If you are on an
 arm64 MAC you may get some errors about the architecture being incorrect. In

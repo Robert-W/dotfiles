@@ -7,22 +7,23 @@ return {
         return vim.api.nvim_buf_line_count(bufnr) > 1000
       end
 
-      require("nvim-treesitter.configs").setup({
+      require('nvim-treesitter.configs').setup({
         ensure_installed = {
-          "rust",
-          "javascript",
-          "typescript",
-          "markdown",
-          "markdown_inline",
-          "jsdoc",
-          "css",
-          "html",
-          "json",
-          "yaml",
-          "lua",
-          "vim",
-          "regex",
-          "bash"
+          'bash',
+          'css',
+          'html',
+          'javascript',
+          'jsdoc',
+          'json',
+          'lua',
+          'markdown',
+          'markdown_inline',
+          'regex',
+          'rust',
+          'sql',
+          'typescript',
+          'vim',
+          'yaml',
         },
         sync_install = false,
         autotag = {

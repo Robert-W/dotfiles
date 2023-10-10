@@ -28,14 +28,15 @@ return {
 
       -- Install LSP
       lsp.ensure_installed({
+        'cssls',
+        'eslint',
+        'html',
+        'jsonls',
+        'lua_ls',
         'rust_analyzer',
+        'sqlls',
         'terraformls',
         'tsserver',
-        'eslint',
-        'lua_ls',
-        'jsonls',
-        'cssls',
-        'html',
       })
 
       -- Fix undefined global 'vim'
