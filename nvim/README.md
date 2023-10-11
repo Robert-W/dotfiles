@@ -1,5 +1,5 @@
 # Neovim Setup
-NVIM configurations as of 12/18/22
+NVIM configurations as of 10/10/23
 
 ## Core requirements
 - Python 3
@@ -23,4 +23,4 @@ that case, you need to uninstall all the `*.so` files and re-open nvim on Macs
 native terminal. This will install/re-compile the correct language servers.
 
 Current path to the `*.so` files:
-- `~/.local/share/nvim/site/pack/packer/start/nvim-treesitter/parser`
+- `~/.local/share/nvim/lazy/nvim-treesitter/parser/`
