@@ -18,10 +18,6 @@ vim.opt.smartindent = true
 vim.opt.eol = false
 vim.opt.fixeol = false
 
--- Options for the indentline plugin
-vim.opt.list = true
--- vim.opt.listchars:append 'space:⋅'
-
 -- vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
