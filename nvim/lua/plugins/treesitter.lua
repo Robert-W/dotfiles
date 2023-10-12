@@ -1,6 +1,10 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'windwp/nvim-ts-autotag'
+    },
     build = ':TSUpdate',
     init = function()
       local function gonnaSlowMeDown(_, bufnr)
@@ -21,6 +25,7 @@ return {
           'regex',
           'rust',
           'sql',
+          'tsx',
           'typescript',
           'vim',
           'yaml',
@@ -39,6 +44,20 @@ return {
           disable = function(lang, bufnr)
             return gonnaSlowMeDown(lang, bufnr)
           end,
+        },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              ['ic'] = '@class.inner',
+              ['ap'] = '@parameter.outer',
+              ['ip'] = '@parameter.inner'
+            }
+          }
         }
       })
     end,
