@@ -57,6 +57,18 @@ return {
               ['ap'] = '@parameter.outer',
               ['ip'] = '@parameter.inner'
             }
+          },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_previous_start = {
+              ['[f'] = '@function.outer',
+              ['[p'] = '@parameter.inner',
+            },
+            goto_next_start = {
+              [']f'] = '@function.outer',
+              [']p'] = '@parameter.inner',
+            }
           }
         }
       })
