@@ -1,19 +1,15 @@
 # Neovim Setup
-NVIM configurations as of 10/10/23
+NVIM configurations as of 10/15/23
 
 ## Core requirements
-- Python 3
 - Homebrew
 
-## Python packages (might not need anymore)
-- `pip3 install pynvim`
-
 ## Brew packages
-- `brew install --HEAD neovim luajit`
+- `brew install --HEAD neovim`
 - `brew install ripgrep`
+- `brew install node` (LSP requirements)
 
-## Clone and Link configuration files
-- `git clone git@github.com:Robert-W/dotfiles.git`
+## Link configuration files
 - `ln -s "$(pwd)/nvim" ~/.config/nvim`
 
 ### ARM64 Mac Users

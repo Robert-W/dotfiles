@@ -7,9 +7,9 @@ zsh configurations as of 12/07/22
 ## Brew packages
 - `brew install iterm2`
 
-## Clone and Link configuration files
-- `git clone git@github.com:Robert-W/dotfiles.git`
+## Link configuration files
 - `ln -s "$(pwd)/zsh/.zfunc" ~/.zfunc`
 - `ln -s "$(pwd)/zsh/.zshrc" ~/.zshrc`
+- `ln -s "$(pwd)/zsh/.zprofile" ~/.zprofile`
 
 > May need to delete the `.zshrc` file if one already exists.
