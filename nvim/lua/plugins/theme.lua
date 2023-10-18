@@ -29,6 +29,7 @@ return {
               hint = ' '
             }
           },
+          'diff',
           'encoding',
           'filetype'
         },
