@@ -21,34 +21,46 @@ return {
     },
     init = function()
       local lsp = require('lsp-zero')
+      local lsp_config = require('lspconfig')
       local cmp = require('cmp')
+      local mason = require('mason')
+      local mason_cfg = require('mason-lspconfig')
 
       -- Use the recommended presets from lsp-zero
       lsp.preset('recommended')
 
-      -- Install LSP
-      lsp.ensure_installed({
-        'cssls',
-        'eslint',
-        'html',
-        'jsonls',
-        'lua_ls',
-        'rust_analyzer',
-        'sqlls',
-        'terraformls',
-        'tsserver',
+      -- Setup mason and install some LSP's
+      mason.setup({})
+      mason_cfg.setup({
+        ensure_installed = {
+          'cssls',
+          'eslint',
+          'html',
+          'jsonls',
+          'lua_ls',
+          'rust_analyzer',
+          'sqlls',
+          'terraformls',
+          'tsserver',
+        },
+        handlers = {
+          lsp.default_setup,
+          lua_ls = function()
+            lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
+          end,
+        }
       })
 
       -- Fix undefined global 'vim'
-      lsp.configure('lua_ls', {
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' }
-            }
-          }
-        }
-      })
+      -- `lsp.configure('lua_ls', {
+      -- `  settings = {
+      -- `    Lua = {
+      -- `      diagnostics = {
+      -- `        globals = { 'vim' }
+      -- `      }
+      -- `    }
+      -- `  }
+      -- `})
 
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
 

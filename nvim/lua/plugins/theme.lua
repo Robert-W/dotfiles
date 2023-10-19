@@ -49,14 +49,6 @@ return {
     }
   },
   {
-    'windwp/nvim-autopairs',
-    opts = {
-      fast_wrap = {
-        map = '<C-a>'
-      }
-    }
-  },
-  {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
     init = function()
