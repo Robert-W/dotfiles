@@ -12,7 +12,10 @@ return {
         vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
         vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
       end,
-      filter_kind = false
+      filter_kind = false,
+      layout = {
+        width = 35
+      }
     })
 
     vim.keymap.set('n', '<leader>x', '<cmd>AerialToggle!<CR>', { desc = 'Toggle code explorer' })
