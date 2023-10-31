@@ -45,22 +45,9 @@ return {
         },
         handlers = {
           lsp.default_setup,
-          lua_ls = function()
-            lsp_config.lua_ls.setup(lsp.nvim_lua_ls())
-          end,
+          lua_ls = function() lsp_config.lua_ls.setup(lsp.nvim_lua_ls()) end,
         }
       })
-
-      -- Fix undefined global 'vim'
-      -- `lsp.configure('lua_ls', {
-      -- `  settings = {
-      -- `    Lua = {
-      -- `      diagnostics = {
-      -- `        globals = { 'vim' }
-      -- `      }
-      -- `    }
-      -- `  }
-      -- `})
 
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -113,6 +100,7 @@ return {
       lsp.setup()
 
       vim.diagnostic.config({ virtual_text = true })
+
     end,
   }
 }
