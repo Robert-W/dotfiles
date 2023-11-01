@@ -9,6 +9,15 @@ NVIM configurations as of 10/15/23
 - `brew install ripgrep`
 - `brew install node` (LSP requirements)
 
+## Language Support
+Some of the LSP servers will not install correctly without installing the
+language first. This list may not be completely accurate. You may not need all
+of these or you may need more.
+
+- [Rust](https://www.rust-lang.org/tools/install)
+- [Go](https://go.dev/doc/install)
+- [Node](https://nodejs.org/en/download/package-manager) or [Bun](https://bun.sh/docs/installation)
+
 ## Link configuration files
 - `ln -s "$(pwd)/nvim" ~/.config/nvim`
 
