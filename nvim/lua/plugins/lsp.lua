@@ -35,6 +35,7 @@ return {
         ensure_installed = {
           'cssls',
           'eslint',
+          'gopls',
           'html',
           'jsonls',
           'lua_ls',

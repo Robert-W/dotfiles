@@ -18,6 +18,6 @@ return {
       }
     })
 
-    vim.keymap.set('n', '<leader>x', '<cmd>AerialToggle!<CR>', { desc = 'Toggle code explorer' })
+    vim.keymap.set('n', '<leader>ox', '<cmd>AerialToggle!<CR>', { desc = 'Toggle code explorer' })
   end
 }

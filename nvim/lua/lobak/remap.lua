@@ -7,7 +7,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = 'Paste and keep contents in 
 -- Yank enhancements
 vim.keymap.set("n", "Y", "y$")
 vim.keymap.set("v", "<leader>y", [["+y]], { desc = 'Copy the highlighted content to clipboard' })
-vim.keymap.set("n", "<leader>n", ":let @+=expand('%')<CR>", { desc = 'Copy current buffer filename to clipboard' })
+vim.keymap.set("n", "<leader>f", ":let @+=expand('%')<CR>", { desc = 'Copy current buffer filename to clipboard' })
 
 -- Keep the screen centered on the cursor when moving around
 vim.keymap.set("n", "n", "nzzzv")
