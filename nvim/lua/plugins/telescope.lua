@@ -18,8 +18,8 @@ return {
       vim.keymap.set('n', '<leader>ow', telescope.extensions.file_browser.file_browser,
         { desc = 'Open file browser in workspace folder' })
       vim.keymap.set('n', '<leader>of', builtin.find_files, { desc = 'Open file picker' })
-      vim.keymap.set('n', '<leader>o;', builtin.help_tags, { desc = 'Open help tags' })
-      vim.keymap.set('n', '<leader>o\\', builtin.buffers, { desc = 'Open buffer picker' })
+      vim.keymap.set('n', '<leader>oh', builtin.help_tags, { desc = 'Open help tags' })
+      vim.keymap.set('n', '<leader>ob', builtin.buffers, { desc = 'Open buffer picker' })
       vim.keymap.set('n', '<leader>os', builtin.live_grep, { desc = 'Open live grep' })
 
       telescope.setup({
