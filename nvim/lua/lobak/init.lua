@@ -4,11 +4,12 @@ require('lobak.lazy')
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local LobakGroup = augroup('Lobak', {})
+local TrimWhitespaceGroup = augroup('TrimWhitespace', {})
 local TextFormatGroup = augroup("TextFormat", { clear = true })
 
+-- Trim whitespace when saving files
 autocmd({ "BufWritePre" }, {
-  group = LobakGroup,
+  group = TrimWhitespaceGroup,
   pattern = "*",
   command = [[%s/\s\+$//e]],
 })
