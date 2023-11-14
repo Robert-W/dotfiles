@@ -26,6 +26,7 @@ return {
           'regex',
           'rust',
           'sql',
+          'terraform',
           'tsx',
           'typescript',
           'vim',
