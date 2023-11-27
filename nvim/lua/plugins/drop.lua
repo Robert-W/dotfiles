@@ -5,9 +5,10 @@ return {
     local drop = require('drop')
 
     drop.setup({
-      theme = 'xmas',
       interval = 150,
-      screensaver = 1000 * 60 * 3
+      max = 40,
+      screensaver = 1000 * 60 * 3,
+      theme = 'xmas',
     })
   end
 }
