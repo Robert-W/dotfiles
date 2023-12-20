@@ -3,7 +3,7 @@
 # Can add option to parse argument later which will override the value
 # for selected, for now, just use the basic fzf option
 
-selected=$(find ~/git ~/playground -mindepth 1 -maxdepth 1 -type d | fzf)
+selected=$(find ~/work ~/personal ~/projects -mindepth 1 -maxdepth 1 -type d | fzf)
 
 if [[ -z $selected ]]; then
   exit 0
