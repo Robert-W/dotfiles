@@ -1,8 +1,7 @@
 # ZSH Setup
-zsh configurations as of 12/07/22
 
-## Core requirements
-- iTerm2
+## Requirements
+- [Homebrew](https://brew.sh)
 
 ## Brew packages
 - `brew install iterm2`

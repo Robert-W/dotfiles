@@ -1,8 +1,7 @@
 # iTerm2
-iTerm2 configurations as of 05/30/23
 
-## Core requirements
-- iTerm2
+## Requirements
+- [Homebrew](https://brew.sh)
 
 ## Brew packages
 - `brew install iterm2`

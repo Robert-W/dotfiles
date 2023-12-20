@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Link neovim configurations
+ln -s "$(pwd)/nvim" ~/.config/nvim
+
+# Link tmux configurations
+ln -s "$(pwd)/tmux/.tmux.conf" ~/.tmux.conf
+ln -s "$(pwd)/tmux/scripts" ~/.local/bin
+
+# Link zsh configurations
+ln -s "$(pwd)/zsh/.zfunc" ~/.zfunc
+ln -s "$(pwd)/zsh/.zshrc" ~/.zshrc
+ln -s "$(pwd)/zsh/.zprofile" ~/.zprofile

@@ -1,8 +1,7 @@
 # Neovim Setup
-NVIM configurations as of 10/15/23
 
-## Core requirements
-- Homebrew
+## Requirements
+- [Homebrew](https://brew.sh)
 
 ## Brew packages
 - `brew install --HEAD neovim`

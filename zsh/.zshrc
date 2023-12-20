@@ -85,9 +85,12 @@ zstyle ':vcs_info:git:*' formats ' on %F{219}%b%f%m'
 NEWLINE=$'\n'
 PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
 
-# Testing, load functions from external directory
+# Load functions from external directory
 fpath=(~/.zfunc $fpath)
 autoload ${fpath[1]}/*(:t)
+
+# Load any additional scripts to path
+export PATH="~/.local/bin:$PATH"
 
 # Fix Docker builds on Apple Silicon so they deploy correctly to AWS
 export DOCKER_DEFAULT_PLATFORM=linux/amd64

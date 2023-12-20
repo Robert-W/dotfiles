@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Intall terminal
+brew install iterm2
+
+# Install Tmux and fzf
+brew install tmux fzf
+
+# Install neovim, ripgrep
+brew install --HEAD neovim
+brew install ripgrep

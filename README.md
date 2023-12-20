@@ -1,8 +1,8 @@
 # dotfiles
-Useful config files for development and/or other things
+My development configurations
 
-## Core requirements
-- Homebrew
+## Requirements
+- [Homebrew](https://brew.sh)
 
-## Brew packages
-- `brew install iterm2`
+## Setup
+Run the `install` and `configure` scripts.
