@@ -2,20 +2,25 @@
 
 # Can add option to parse argument later which will override the value
 # for selected, for now, just use the basic fzf option
+selected=$(find ~/personal ~/projects -mindepth 1 -maxdepth 1 -type d | fzf)
 
-selected=$(find ~/work ~/personal ~/projects -mindepth 1 -maxdepth 1 -type d | fzf)
-
-if [[ -z $selected ]]; then
+if [ -z $selected ]; then
   exit 0
 fi
 
 selected_name=$(basename "$selected" | tr . _)
-#tmux_running=$(pgrep tmux)
+tmux_has_clients=$(tmux list-clients)
 
-#if [[ -z $tmux_running ]]; then
-#  tmux new-session -s $selected_name -c $selected
-#  exit 0
-#fi
+# If there is no client running, create one by attaching to an existing
+# session or creating a new session if one doesn't exist
+if [ -z $tmux_has_clients ]; then
+  if tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux attach-session -t $selected_name
+  else
+    tmux new-session -s $selected_name -c $selected
+  fi
+  exit 0
+fi
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
   tmux new-session -ds $selected_name -c $selected
