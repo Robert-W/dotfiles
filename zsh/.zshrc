@@ -90,7 +90,7 @@ fpath=(~/.zfunc $fpath)
 autoload ${fpath[1]}/*(:t)
 
 # Load any additional scripts to path
-export PATH="~/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Fix Docker builds on Apple Silicon so they deploy correctly to AWS
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
