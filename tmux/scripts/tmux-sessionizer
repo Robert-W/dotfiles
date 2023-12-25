@@ -13,7 +13,7 @@ tmux_has_clients=$(tmux list-clients)
 
 # If there is no client running, create one by attaching to an existing
 # session or creating a new session if one doesn't exist
-if [ -z $tmux_has_clients ]; then
+if [[ -z $tmux_has_clients ]]; then
   if tmux has-session -t=$selected_name 2> /dev/null; then
     tmux attach-session -t $selected_name
   else
