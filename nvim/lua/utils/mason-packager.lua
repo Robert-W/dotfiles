@@ -1,6 +1,31 @@
 local package = require('mason-core.package')
 local registry = require('mason-registry')
 
+-- NOTE:
+-- This util is very basic, it a server_name provided via ensure_installed
+-- exists, it tries to install it and thats it. It doesnt check for updates yet,
+-- or have a way to remove them. Currently, updates and deletes can be done in
+-- the Mason UI.
+-- TODO: Check ensure_installed against all packages installed, ignore packages
+-- of type Compiler, Runtime, or LSP. This diff should tell us whats installed
+-- but not listed, and then we can call pkg:uninstall()
+-- TODO: If we want automatic updates, use something like the following
+-- install_servers would be the code in the for do, just extract it
+-- if pkg:is_installed() then
+--   if version ~= nil then
+--     pkg:get_installed_version(function(ok, current_version))
+--       if ok and current_version ~= version then
+--         install_servers
+--       end
+--     end
+--   end
+-- else
+--   install_servers
+-- end
+-- TODO: If we want a command to trigger the updates, add a new function
+-- and do the following
+-- vim.api.nvim_create_user_command('MasonUpdatePackages', function() ... end, {*opts})
+
 local M = {}
 
 ---@class PackagerSettings
@@ -36,23 +61,6 @@ function M.setup(options)
       end))
     end
   end
-
-  -- TODO: If we want autoatic updates, use something like the following
-  -- install_servers would be the code in the for do, just extract it
-  -- if pkg:is_installed() then
-  --   if version ~= nil then
-  --     pkg:get_installed_version(function(ok, current_version))
-  --       if ok and current_version ~= version then
-  --         install_servers
-  --       end
-  --     end
-  --   end
-  -- else
-  --   install_servers
-  -- end
-  -- TODO: If we want a command to trigger the updates, add a new function
-  -- and do the following
-  -- vim.api.nvim_create_user_command('MasonUpdatePackages', function() ... end, {*opts})
 end
 
 return M
