@@ -28,6 +28,7 @@ return {
       local luasnip = require('luasnip')
       local luasnip_loaders = require('luasnip.loaders.from_vscode')
       local masoncfg = require('mason-lspconfig')
+      local registry = require('mason-registry')
 
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -59,6 +60,7 @@ return {
       -- Mason LSP Config
       masoncfg.setup({
         ensure_installed = {
+          'bashls',
           'cssls',
           'eslint',
           'gopls',
@@ -71,6 +73,47 @@ return {
           'tsserver',
         }
       })
+
+      -- Other packages in mason we would like to install
+      local packages = {
+        -- Linters/Formatters
+        'shellcheck',
+        'shfmt',
+        'stylua',
+        -- DAP
+        'codelldb'
+      }
+
+      -- Iterate and install the additional packages
+      for _, name in ipairs(packages) do
+        local Package = require('mason-core.package')
+
+        local pkg_name, version = Package.Parse(name)
+        local ok, pkg = pcall(registry.get_package, pkg_name)
+        if ok and not pkg:is_installed() then
+          -- TODO: Wrap this in a utils function and use here if we want auto
+          -- updates
+          -- if pkg:is_installed() then
+          --   if version ~= nil then
+          --     pkg:get_installed_version(function(ok, current_version))
+          --       if ok and current_version ~= version then
+          --         install_servers
+          --       end
+          --     end
+          --   end
+          -- else
+          --   install_servers
+          -- end
+          vim.notify(string.format('[mason-packages] installing %s', pkg_name), vim.log.levels.INFO)
+          pkg:install({ version = version }):once('closed', vim.schedule_wrap(function ()
+            if pkg:is_installed() then
+              vim.notify(string.format('[mason-packages] %s was installed', pkg_name), vim.log.levels.INFO)
+            else
+              vim.notify(string.format('[mason-packages] failed to install %s', pkg_name), vim.log.levels.ERROR)
+            end
+          end))
+        end
+      end
 
       -- Setup all of our LSP servers
       masoncfg.setup_handlers({
