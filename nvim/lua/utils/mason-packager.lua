@@ -27,8 +27,6 @@ function M.setup(options)
         end
       end))
     end
-
-    vim.notify(string.format('[mason-packages] installing %s', server_name), vim.log.levels.INFO)
   end
 
   -- TODO: If we want autoatic updates, use something like the following
