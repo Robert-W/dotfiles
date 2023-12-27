@@ -45,8 +45,8 @@ function M.setup(options)
   local opts = vim.tbl_deep_extend('force', DEFAULT_SETTINGS, options)
 
   -- For every package passed in, lets install it
-  for _, server_name in ipairs(opts.ensure_installed) do
-    local pkg_name, version = package.Parse(server_name)
+  for _, name in ipairs(opts.ensure_installed) do
+    local pkg_name, version = package.Parse(name)
     local ok, pkg = pcall(registry.get_package, pkg_name)
 
     notify(('[mason-packages] installing %s'):format(pkg_name))
