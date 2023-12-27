@@ -8,6 +8,13 @@ local DEFAULT_SETTINGS = {
   ensure_installed = {}
 }
 
+---@param msg string
+---@param level string?
+local notify = vim.schedule_wrap(function(msg, level)
+  level = level or vim.log.levels.INFO
+  vim.notify(msg, level, { title = "utils.mason-packager.lua" })
+end)
+
 ---@param options PackagerSettings
 function M.setup(options)
   local opts = vim.tbl_deep_extend('force', DEFAULT_SETTINGS, options)
@@ -17,13 +24,14 @@ function M.setup(options)
     local pkg_name, version = package.Parse(server_name)
     local ok, pkg = pcall(registry.get_package, pkg_name)
 
+    notify(('[mason-packages] installing %s'):format(pkg_name))
     if ok and not pkg:is_installed() then
-      vim.notify(string.format('[mason-packages] installing %s', pkg_name), vim.log.levels.INFO)
+      notify(('[mason-packages] installing %s'):format(pkg_name))
       pkg:install({ version = version }):once('closed', vim.schedule_wrap(function()
         if pkg:is_installed() then
-          vim.notify(string.format('[mason-packages] %s was installed', pkg_name), vim.log.levels.INFO)
+          notify(('[mason-packages] %s was installed'):format(pkg_name))
         else
-          vim.notify(string.format('[mason-packages] failed to install %s', pkg_name), vim.log.levels.ERROR)
+          notify(('[mason-packages] failed to install %s'):format(pkg_name), vim.log.levels.ERROR)
         end
       end))
     end
