@@ -89,7 +89,8 @@ return {
           })
         end,
         -- override lsp servers here if you need custom implementation
-        ["lua_ls"] = require('config.lua_ls').configure
+        ["lua_ls"] = require('config.lua_ls').configure,
+        ["rust_analyzer"] = require('config.rust-tools').configure
       })
 
       -- Use this to setup all of our keybindings when a server attaches
