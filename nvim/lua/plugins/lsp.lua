@@ -1,58 +1,19 @@
 return {
-  -- Mason Package manager
   {
     'williamboman/mason.nvim',
     config = function()
       require('mason').setup()
     end
   },
-  -- Mason LSP Config and Completion Support
   {
     'williamboman/mason-lspconfig.nvim',
     dependencies = {
       'neovim/nvim-lspconfig',
-      'hrsh7th/nvim-cmp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lua',
-      -- Snippets
-      'L3MON4D3/LuaSnip',
-      'rafamadriz/friendly-snippets',
-      -- Additional packages related to LSP
+      -- Additional packages that we need so we can configure them here
       'simrat39/rust-tools.nvim'
     },
     config = function()
-      local cmp = require('cmp')
       local masoncfg = require('mason-lspconfig')
-
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
-      -- lazy load our snippets
-      require('luasnip.loaders.from_vscode').lazy_load()
-
-      -- Mappings for completion suggestions
-      cmp.setup({
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-        },
-        mapping = {
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-q>'] = cmp.mapping.close(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        },
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-          end,
-        }
-      })
 
       -- Mason LSP Config
       masoncfg.setup({
@@ -83,11 +44,7 @@ return {
       -- Setup all of our LSP servers
       masoncfg.setup_handlers({
         -- default handler for all servers
-        function(server_name)
-          require('lspconfig')[server_name].setup({
-            capabilities = require('cmp_nvim_lsp').default_capabilities()
-          })
-        end,
+        require('config.default_lsp').configure,
         -- override lsp servers here if you need custom implementation
         ["lua_ls"] = require('config.lua_ls').configure,
         ["rust_analyzer"] = require('config.rust-tools').configure
