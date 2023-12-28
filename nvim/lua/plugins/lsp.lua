@@ -20,6 +20,8 @@ return {
       -- Snippets
       'L3MON4D3/LuaSnip',
       'rafamadriz/friendly-snippets',
+      -- Additional packages related to LSP
+      'simrat39/rust-tools.nvim'
     },
     config = function()
       local cmp = require('cmp')
@@ -92,7 +94,7 @@ return {
           })
         end,
         -- override lsp servers here if you need custom implementation
-        ["lua_ls"] = require('config.luals').configure
+        ["lua_ls"] = require('config.lua_ls').configure
       })
 
       -- Use this to setup all of our keybindings when a server attaches
