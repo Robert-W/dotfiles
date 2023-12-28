@@ -50,12 +50,12 @@ function M.setup(options)
     local ok, pkg = pcall(registry.get_package, pkg_name)
 
     if ok and not pkg:is_installed() then
-      notify(('[mason-packages] installing %s'):format(pkg_name))
+      notify(('[mason-packager] installing %s'):format(pkg_name))
       pkg:install({ version = version }):once('closed', vim.schedule_wrap(function()
         if pkg:is_installed() then
-          notify(('[mason-packages] %s was installed'):format(pkg_name))
+          notify(('[mason-packager] %s was installed'):format(pkg_name))
         else
-          notify(('[mason-packages] failed to install %s'):format(pkg_name), vim.log.levels.ERROR)
+          notify(('[mason-packager] failed to install %s'):format(pkg_name), vim.log.levels.ERROR)
         end
       end))
     end
