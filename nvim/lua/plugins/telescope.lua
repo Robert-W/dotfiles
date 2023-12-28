@@ -3,14 +3,16 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-telescope/telescope-file-browser.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
     },
     init = function()
       local actions = require("telescope.actions")
-      local browser_actions = require("telescope").extensions.file_browser.actions
       local builtin = require("telescope.builtin")
       local telescope = require("telescope")
+
+      local browser_actions = telescope.extensions.file_browser.actions
 
       -- Add some useful remaps
       vim.keymap.set('n', '<leader>oc', ':Telescope file_browser path=%:p:h=%:p:h<cr>',
@@ -70,10 +72,14 @@ return {
               },
             },
           },
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown()
+          }
         }
       })
 
       telescope.load_extension("file_browser")
+      telescope.load_extension("ui-select")
     end,
   },
 }
