@@ -82,7 +82,8 @@ return {
           'shfmt',
           'stylua',
           -- DAP
-          'codelldb'
+          'codelldb',
+          'js-debug-adapter',
         }
       })
 
