@@ -7,5 +7,5 @@ brew install iterm2
 brew install tmux fzf
 
 # Install neovim, ripgrep
-brew install --HEAD neovim
+brew install neovim
 brew install ripgrep

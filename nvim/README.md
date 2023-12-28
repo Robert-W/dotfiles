@@ -4,7 +4,7 @@
 - [Homebrew](https://brew.sh)
 
 ## Brew packages
-- `brew install --HEAD neovim`
+- `brew install neovim`
 - `brew install ripgrep`
 - `brew install node` (LSP requirements)
 
