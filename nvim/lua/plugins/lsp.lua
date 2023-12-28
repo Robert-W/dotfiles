@@ -92,20 +92,7 @@ return {
           })
         end,
         -- override lsp servers here if you need custom implementation
-        ["lua_ls"] = function()
-          lspconfig.lua_ls.setup({
-            settings = {
-              Lua = {
-                runtime = {
-                  version = "LuaJIT",
-                },
-                diagnostics = {
-                  globals = { "vim" }
-                },
-              }
-            }
-          })
-        end
+        ["lua_ls"] = require('config.luals').configure
       })
 
       -- Use this to setup all of our keybindings when a server attaches
