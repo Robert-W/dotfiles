@@ -74,16 +74,12 @@ return {
         }
       })
 
-      -- Install packages masoncfg cannot, these are linters, formatters, DAP
+      -- Install packages masoncfg cannot, these include linters,
+      -- formatters, and DAP packages. These do require additional setup, so
+      -- these alone do nothing
       masonpkgr.setup({
         ensure_installed = {
-          -- Linters/Formatters
-          'shellcheck',
-          'shfmt',
-          'stylua',
-          -- DAP
           'codelldb',
-          'js-debug-adapter',
         }
       })
 
