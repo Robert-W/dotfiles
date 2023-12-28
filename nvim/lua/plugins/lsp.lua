@@ -25,17 +25,12 @@ return {
     },
     config = function()
       local cmp = require('cmp')
-      local lspcapabilities = require('cmp_nvim_lsp')
-      local lspconfig = require('lspconfig')
-      local luasnip = require('luasnip')
-      local luasnip_loaders = require('luasnip.loaders.from_vscode')
       local masoncfg = require('mason-lspconfig')
-      local masonpkgr = require('utils.mason-packager')
 
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
       -- lazy load our snippets
-      luasnip_loaders.lazy_load()
+      require('luasnip.loaders.from_vscode').lazy_load()
 
       -- Mappings for completion suggestions
       cmp.setup({
@@ -54,7 +49,7 @@ return {
         },
         snippet = {
           expand = function(args)
-            luasnip.lsp_expand(args.body)
+            require('luasnip').lsp_expand(args.body)
           end,
         }
       })
@@ -79,7 +74,7 @@ return {
       -- Install packages masoncfg cannot, these include linters,
       -- formatters, and DAP packages. These do require additional setup, so
       -- these alone do nothing
-      masonpkgr.setup({
+      require('utils.mason-packager').setup({
         ensure_installed = {
           'codelldb',
         }
@@ -89,8 +84,8 @@ return {
       masoncfg.setup_handlers({
         -- default handler for all servers
         function(server_name)
-          lspconfig[server_name].setup({
-            capabilities = lspcapabilities.default_capabilities()
+          require('lspconfig')[server_name].setup({
+            capabilities = require('cmp_nvim_lsp').default_capabilities()
           })
         end,
         -- override lsp servers here if you need custom implementation
