@@ -28,6 +28,7 @@ return {
       local luasnip = require('luasnip')
       local luasnip_loaders = require('luasnip.loaders.from_vscode')
       local masoncfg = require('mason-lspconfig')
+      local masonpkgr = require('utils.mason-packager')
 
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -59,6 +60,7 @@ return {
       -- Mason LSP Config
       masoncfg.setup({
         ensure_installed = {
+          'bashls',
           'cssls',
           'eslint',
           'gopls',
@@ -69,6 +71,15 @@ return {
           'sqlls',
           'terraformls',
           'tsserver',
+        }
+      })
+
+      -- Install packages masoncfg cannot, these include linters,
+      -- formatters, and DAP packages. These do require additional setup, so
+      -- these alone do nothing
+      masonpkgr.setup({
+        ensure_installed = {
+          'codelldb',
         }
       })
 
