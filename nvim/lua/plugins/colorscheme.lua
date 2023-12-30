@@ -8,9 +8,15 @@ return {
         aerial = true,
         lsp_trouble = true,
         mason = true,
+        neotree = true,
         notify = true,
       },
-      transparent_background = true
+      transparent_background = true,
+      show_end_of_buffer = true,
+      styles = {
+        operators = { 'bold' },
+        types = { 'bold' },
+      }
     })
 
     -- Set the colorscheme
