@@ -6,6 +6,7 @@ return {
       flavour = 'mocha',
       integrations = {
         aerial = true,
+        harpoon = true,
         lsp_trouble = true,
         mason = true,
         neotree = true,
