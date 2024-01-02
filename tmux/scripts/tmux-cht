@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+read -p  "Enter query: " query
+formatted_query=$(echo $query | tr ' ' '+')
+
+tmux neww bash -c "curl -s cht.sh/$formatted_query | bat --paging=always"
