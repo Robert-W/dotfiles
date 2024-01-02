@@ -34,7 +34,7 @@ local DEFAULT_SETTINGS = {
 }
 
 ---@param msg string
----@param level string?
+---@param level integer?
 local notify = vim.schedule_wrap(function(msg, level)
   level = level or vim.log.levels.INFO
   vim.notify(msg, level, { title = "utils.mason-packager.lua" })
