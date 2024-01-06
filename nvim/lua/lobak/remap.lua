@@ -21,7 +21,7 @@ vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 
 -- shortcut to make the current file executable
-vim.keymap.set("n", "<leader>x", ":silent !chmod +x %<CR>")
+vim.keymap.set("n", "<leader>x", ":silent !chmod +x %<CR>", { desc = 'Make the current file executable' })
 
 -- Convenient ways to move text in different modes
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

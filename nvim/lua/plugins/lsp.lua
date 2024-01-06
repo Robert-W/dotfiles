@@ -42,12 +42,13 @@ return {
       })
 
       -- Setup all of our LSP servers
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
       masoncfg.setup_handlers({
         -- default handler for all servers
-        require('config.default_lsp').configure,
+        require('config.default_lsp').configure(capabilities),
         -- override lsp servers here if you need custom implementation
-        ["lua_ls"] = require('config.lua_ls').configure,
-        ["rust_analyzer"] = require('config.rust-tools').configure
+        ["lua_ls"] = require('config.lua_ls').configure(capabilities),
+        ["rust_analyzer"] = require('config.rust-tools').configure(capabilities)
       })
 
       -- Use this to setup all of our keybindings when a server attaches
