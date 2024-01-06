@@ -1,19 +1,21 @@
 local M = {}
 
-function M.configure()
-  require('lspconfig').lua_ls.setup({
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
-    settings = {
-      Lua = {
-        runtime = {
-          version = "LuaJIT",
-        },
-        diagnostics = {
-          globals = { "vim" }
-        },
+function M.configure(capabilities)
+  return function()
+    require('lspconfig').lua_ls.setup({
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          runtime = {
+            version = "LuaJIT",
+          },
+          diagnostics = {
+            globals = { "vim" }
+          },
+        }
       }
-    }
-  })
+    })
+  end
 end
 
 return M
