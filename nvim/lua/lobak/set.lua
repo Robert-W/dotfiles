@@ -14,6 +14,13 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
+-- Show which line the cursor is on
+vim.opt.cursorline = true
+
+-- Configure how we represent whitespace
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
 -- Options needed for current companies development setup
 vim.opt.eol = false
 vim.opt.fixeol = false
