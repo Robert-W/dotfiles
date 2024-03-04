@@ -28,9 +28,8 @@ return {
 
     -- Mappings for completion suggestions
     cmp.setup({
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
+      completion = {
+        completeopt = 'menu,menuone,noinsert'
       },
       mapping = {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -45,7 +44,12 @@ return {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
-      }
+      },
+      sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'path' }
+      },
     })
   end
 }
