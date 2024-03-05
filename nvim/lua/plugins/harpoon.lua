@@ -13,16 +13,19 @@ return {
       }
     })
 
-    vim.keymap.set('n', '<leader>ha', function() harpoon:list():append() end, { desc = 'Append to harpoon' })
-    vim.keymap.set('n', '<leader>hn', function() harpoon:list():next() end, { desc = 'Next item in harpoon' })
-    vim.keymap.set('n', '<leader>hp', function() harpoon:list():prev() end, { desc = 'Prev item in harpoon' })
-    vim.keymap.set('n', '<leader>he', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
-      { desc = 'Edit harpoon menu' })
+    vim.keymap.set('n', '<leader>ha', function() harpoon:list():append() end, { desc = '[H]arpoon: [A]ppend item' })
+    vim.keymap.set('n', '<leader>hn', function() harpoon:list():next() end, { desc = '[H]arpoon: [N]ext item' })
+    vim.keymap.set('n', '<leader>hp', function() harpoon:list():prev() end, { desc = '[H]arpoon: [P]rev item' })
 
-    -- Jump to specific entries in harpoon, up to 4
-    vim.keymap.set('n', '<leader>hh', function() harpoon:list():select(1) end, { desc = 'Jump to 1st item in harpoon' })
-    vim.keymap.set('n', '<leader>hj', function() harpoon:list():select(2) end, { desc = 'Jump to 2nd item in harpoon' })
-    vim.keymap.set('n', '<leader>hk', function() harpoon:list():select(3) end, { desc = 'Jump to 3rd item in harpoon' })
-    vim.keymap.set('n', '<leader>hl', function() harpoon:list():select(4) end, { desc = 'Jump to 4th item in harpoon' })
+    vim.keymap.set('n', '<leader>hh', function() harpoon:list():select(1) end,
+      { desc = '[H]arpoon: [H] Jump to 1st item' })
+    vim.keymap.set('n', '<leader>hj', function() harpoon:list():select(2) end,
+      { desc = '[H]arpoon: [J] Jump to 2nd item' })
+    vim.keymap.set('n', '<leader>hk', function() harpoon:list():select(3) end,
+      { desc = '[H]arpoon: [K] Jump to 3rd item' })
+    vim.keymap.set('n', '<leader>hl', function() harpoon:list():select(4) end,
+      { desc = '[H]arpoon: [L] Jump to 4th item' })
+    vim.keymap.set('n', '<leader>th', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+      { desc = '[T]oggle [H]arpoon' })
   end
 }
