@@ -9,7 +9,6 @@ return {
     })
 
     -- Setup shortcut to toggle cloak on and off
-    vim.keymap.set('n', '<leader>sh', '<cmd>CloakToggle<CR>', { desc = 'Toggle secret values with Cloak' })
-
+    vim.keymap.set('n', '<leader>tc', '<cmd>CloakToggle<CR>', { desc = '[T]oggle [C]loak' })
   end
 }

@@ -9,7 +9,7 @@ return {
     local neotree = require('neo-tree')
 
     -- Neotree remaps
-    vim.keymap.set('n', '<leader>ot', ':Neotree toggle<cr>', { desc = 'Toggle Neotree' })
+    vim.keymap.set('n', '<leader>tn', ':Neotree toggle<cr>', { desc = '[T]oggle [N]eotree' })
 
     neotree.setup({
       filesystem = {

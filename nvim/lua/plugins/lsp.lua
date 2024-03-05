@@ -9,6 +9,7 @@ return {
     'williamboman/mason-lspconfig.nvim',
     dependencies = {
       'neovim/nvim-lspconfig',
+      'nvim-telescope/telescope.nvim',
       -- Additional packages that we need so we can configure them here
       'simrat39/rust-tools.nvim'
     },
@@ -54,31 +55,26 @@ return {
       -- Use this to setup all of our keybindings when a server attaches
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(event)
-          local bufnr = event.buf
+          local builtin = require('telescope.builtin')
+          -- Helper function for keymaps
+          local map = function(mode, keys, func, desc)
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, remap = false, desc = 'LSP: ' .. desc })
+          end
 
-          -- normal mode keymaps
-          vim.keymap.set('n', 'gk', vim.lsp.buf.hover,
-            { buffer = bufnr, remap = false, desc = 'Show hover information for the symbol' })
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition,
-            { buffer = bufnr, remap = false, desc = 'Jump to the definition of the symbol' })
-          vim.keymap.set('n', 'gm', vim.lsp.buf.implementation,
-            { buffer = bufnr, remap = false, desc = 'Show implementation for the symbol' })
-          vim.keymap.set('n', 'gr', '<Cmd>Telescope lsp_references<CR>',
-            { buffer = bufnr, remap = false, desc = 'Show references to the symbol' })
-          vim.keymap.set('n', 'gc', vim.lsp.buf.incoming_calls,
-            { buffer = bufnr, remap = false, desc = 'Show call sites of the symbol' })
-          vim.keymap.set('n', 'go', vim.lsp.buf.outgoing_calls,
-            { buffer = bufnr, remap = false, desc = 'Show items called by the symbol' })
-          vim.keymap.set('n', 'gp', function() vim.lsp.buf.format({ timeout_ms = 10000 }) end,
-            { buffer = bufnr, remap = false, desc = 'Format current buffer with attached LSP' })
-          vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename,
-            { buffer = bufnr, remap = false, desc = 'Rename variable' })
-          vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action,
-            { buffer = bufnr, remap = false, desc = 'Perform code actions' })
+          map('n', 'gk', vim.lsp.buf.hover, '[G][K] Hover documentation')
+          map('n', 'gd', builtin.lsp_definitions, '[G]oto [D]efinition')
+          map('n', 'gi', builtin.lsp_implementations, '[G]oto [I]mplementation')
+          map('n', 'gr', builtin.lsp_references, '[G]oto [R]eferences')
+          map('n', 'gt', builtin.lsp_type_definitions, '[G][T] Show type definition')
+          map('n', 'gp', function() vim.lsp.buf.format({ timeout_ms = 10000 }) end, '[G][P] Format current buffer')
+          map('n', '<leader>r', vim.lsp.buf.rename, '[R]ename variable')
+          map('n', '<leader>a', vim.lsp.buf.code_action, 'Perform code [A]ctions')
+          map('i', '<C-h>', vim.lsp.buf.signature_help, 'Show signature [H]elp')
 
-          -- insert mode keymaps
-          vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help,
-            { buffer = bufnr, remap = false, desc = 'Show signature information' })
+          -- vim.keymap.set('n', 'gc', vim.lsp.buf.incoming_calls,
+          --   { buffer = bufnr, remap = false, desc = 'Show call sites of the symbol' })
+          -- vim.keymap.set('n', 'go', vim.lsp.buf.outgoing_calls,
+          --   { buffer = bufnr, remap = false, desc = 'Show items called by the symbol' })
         end
       })
 

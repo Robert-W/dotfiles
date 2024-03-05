@@ -8,7 +8,7 @@ return {
   init = function()
     -- Setup aerial and then add a keymap for it
     require('aerial').setup({
-      on_attach = function (bufnr)
+      on_attach = function(bufnr)
         vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
         vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
       end,
@@ -18,6 +18,6 @@ return {
       }
     })
 
-    vim.keymap.set('n', '<leader>ox', '<cmd>AerialToggle!<CR>', { desc = 'Toggle code explorer' })
+    vim.keymap.set('n', '<leader>ta', '<cmd>AerialToggle!<CR>', { desc = '[T]oggle [A]erial' })
   end
 }
