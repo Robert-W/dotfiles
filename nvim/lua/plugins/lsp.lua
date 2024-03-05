@@ -63,9 +63,9 @@ return {
 
           map('n', 'gk', vim.lsp.buf.hover, '[G][K] Hover documentation')
           map('n', 'gd', builtin.lsp_definitions, '[G]oto [D]efinition')
-          map('n', 'gi', builtin.lsp_implementations, '[G]oto [I]mplementation')
+          map('n', 'gD', builtin.lsp_type_definitions, '[G]oto Type [D]efinition')
+          map('n', 'gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
           map('n', 'gr', builtin.lsp_references, '[G]oto [R]eferences')
-          map('n', 'gt', builtin.lsp_type_definitions, '[G][T] Show type definition')
           map('n', 'gp', function() vim.lsp.buf.format({ timeout_ms = 10000 }) end, '[G][P] Format current buffer')
           map('n', '<leader>r', vim.lsp.buf.rename, '[R]ename variable')
           map('n', '<leader>a', vim.lsp.buf.code_action, 'Perform code [A]ctions')
