@@ -57,8 +57,8 @@ return {
               ['if'] = '@function.inner',
               ['ac'] = '@class.outer',
               ['ic'] = '@class.inner',
-              ['ap'] = '@parameter.outer',
-              ['ip'] = '@parameter.inner'
+              ['aa'] = '@parameter.outer',
+              ['ia'] = '@parameter.inner',
             }
           },
           move = {
@@ -66,11 +66,11 @@ return {
             set_jumps = true,
             goto_previous_start = {
               ['[f'] = '@function.outer',
-              ['[p'] = '@parameter.inner',
+              ['[a'] = '@parameter.inner',
             },
             goto_next_start = {
               [']f'] = '@function.outer',
-              [']p'] = '@parameter.inner',
+              [']a'] = '@parameter.inner',
             }
           }
         }
