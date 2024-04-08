@@ -13,7 +13,7 @@ return {
       }
     })
 
-    vim.keymap.set('n', '<leader>ha', function() harpoon:list():append() end, { desc = '[H]arpoon: [A]ppend item' })
+    vim.keymap.set('n', '<leader>ha', function() harpoon:list():add() end, { desc = '[H]arpoon: [A]dd item' })
     vim.keymap.set('n', '<leader>hn', function() harpoon:list():next() end, { desc = '[H]arpoon: [N]ext item' })
     vim.keymap.set('n', '<leader>hp', function() harpoon:list():prev() end, { desc = '[H]arpoon: [P]rev item' })
 
