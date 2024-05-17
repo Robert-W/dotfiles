@@ -79,7 +79,7 @@ return {
           --   { buffer = bufnr, remap = false, desc = 'Show items called by the symbol' })
 
           -- Enable inlay_hints for the active buffer
-          -- vim.lsp.inlay_hint(event.buf, true)
+          vim.lsp.inlay_hint.enable(true)
         end
       })
 
