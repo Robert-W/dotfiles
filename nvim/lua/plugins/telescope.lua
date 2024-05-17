@@ -42,6 +42,7 @@ return {
           no_ignore = true,
           file_ignore_patterns = {
             'node_modules',
+            'target',
             '.git',
           },
         },
@@ -51,6 +52,7 @@ return {
           only_sort_text = true,
           file_ignore_patterns = {
             'node_modules',
+            'target',
             '.git',
           },
         },
@@ -61,6 +63,7 @@ return {
           hidden = true,
           file_ignore_patterns = {
             'node_modules',
+            'target',
           },
           mappings = {
             n = {
