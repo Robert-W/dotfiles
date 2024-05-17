@@ -9,9 +9,7 @@ return {
     'williamboman/mason-lspconfig.nvim',
     dependencies = {
       'neovim/nvim-lspconfig',
-      'nvim-telescope/telescope.nvim',
-      -- Additional packages that we need so we can configure them here
-      'simrat39/rust-tools.nvim'
+      'nvim-telescope/telescope.nvim'
     },
     config = function()
       local masoncfg = require('mason-lspconfig')
@@ -49,7 +47,7 @@ return {
         require('config.default_lsp').configure(capabilities),
         -- override lsp servers here if you need custom implementation
         ["lua_ls"] = require('config.lua_ls').configure(capabilities),
-        ["rust_analyzer"] = require('config.rust-tools').configure(capabilities)
+        ["rust_analyzer"] = require('config.rust_analyzer').configure(capabilities)
       })
 
       -- Use this to setup all of our keybindings when a server attaches
@@ -70,6 +68,9 @@ return {
           map('n', '<leader>r', vim.lsp.buf.rename, '[R]ename variable')
           map('n', '<leader>a', vim.lsp.buf.code_action, 'Perform code [A]ctions')
           map('i', '<C-h>', vim.lsp.buf.signature_help, 'Show signature [H]elp')
+
+          -- Enable inlay_hints for the active buffer
+          vim.lsp.inlay_hint(event.buf, true)
 
           -- vim.keymap.set('n', 'gc', vim.lsp.buf.incoming_calls,
           --   { buffer = bufnr, remap = false, desc = 'Show call sites of the symbol' })
