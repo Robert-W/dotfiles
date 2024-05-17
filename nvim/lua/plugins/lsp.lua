@@ -70,7 +70,7 @@ return {
           map('i', '<C-h>', vim.lsp.buf.signature_help, 'Show signature [H]elp')
 
           -- Enable inlay_hints for the active buffer
-          vim.lsp.inlay_hint(event.buf, true)
+          vim.lsp.inlay_hint.enable(true)
 
           -- vim.keymap.set('n', 'gc', vim.lsp.buf.incoming_calls,
           --   { buffer = bufnr, remap = false, desc = 'Show call sites of the symbol' })
