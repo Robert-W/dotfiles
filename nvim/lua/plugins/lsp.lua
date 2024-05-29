@@ -77,11 +77,15 @@ return {
           --   { buffer = bufnr, remap = false, desc = 'Show call sites of the symbol' })
           -- vim.keymap.set('n', 'go', vim.lsp.buf.outgoing_calls,
           --   { buffer = bufnr, remap = false, desc = 'Show items called by the symbol' })
+
+          -- Enable inlay_hints for the active buffer
+          -- vim.lsp.inlay_hint(event.buf, true)
         end
       })
 
       -- Enable virtual text globally
       vim.diagnostic.config({ virtual_text = true })
+
     end
   }
 }
