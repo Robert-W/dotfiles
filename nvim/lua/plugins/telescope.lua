@@ -45,7 +45,6 @@ return {
             'node_modules',
             'target',
             '.git',
-            'target',
           },
         },
         live_grep = {
