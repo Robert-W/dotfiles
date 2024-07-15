@@ -8,13 +8,13 @@ return {
     vim.o.timeoutlen = 500
 
     whichkey.setup()
-    whichkey.register({
-      ['<leader>d'] = { name = '[D]iagnostics' },
-      ['<leader>g'] = { name = '[G]it' },
-      ['<leader>h'] = { name = '[H]arpoon' },
-      ['<leader>o'] = { name = '[O]pen' },
-      ['<leader>s'] = { name = '[S]earch' },
-      ['<leader>t'] = { name = '[T]oggle' }
+    whichkey.add({
+      { '<leader>d', group = '[D]iagnostics' },
+      { '<leader>g', group = '[G]it' },
+      { '<leader>h', group = '[H]arpoon' },
+      { '<leader>o', group = '[O]pen' },
+      { '<leader>s', group = '[S]earch' },
+      { '<leader>t', group = '[T]oggle' }
     })
   end
 }
