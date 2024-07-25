@@ -28,6 +28,7 @@ return {
           'sqlls',
           'terraformls',
           'tsserver',
+          'yamlls',
         }
       })
 
