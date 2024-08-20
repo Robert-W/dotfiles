@@ -48,7 +48,8 @@ return {
         require('config.default_lsp').configure(capabilities),
         -- override lsp servers here if you need custom implementation
         ["lua_ls"] = require('config.lua_ls').configure(capabilities),
-        ["rust_analyzer"] = require('config.rust_analyzer').configure(capabilities)
+        ["rust_analyzer"] = require('config.rust_analyzer').configure(capabilities),
+        ["tsserver"] = require('config.tsserver').configure(capabilities)
       })
 
       -- Use this to setup all of our keybindings when a server attaches
