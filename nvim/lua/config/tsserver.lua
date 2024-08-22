@@ -12,7 +12,7 @@ local inlay_hints = {
 
 function M.configure(capabilities)
   return function()
-    require('lspconfig').lua_ls.setup({
+    require('lspconfig').tsserver.setup({
       capabilities = capabilities,
       settings = {
         javascript = {
