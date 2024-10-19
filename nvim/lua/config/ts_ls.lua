@@ -2,7 +2,7 @@ local M = {}
 
 function M.configure(capabilities)
   return function()
-    require('lspconfig').tsserver.setup({
+    require('lspconfig').ts_ls.setup({
       capabilities = capabilities,
       init_options = {
         preferences = {
