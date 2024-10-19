@@ -32,6 +32,7 @@ vim.opt.errorbells = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Convert tabs to 2 spaces on save
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
