@@ -20,7 +20,6 @@ return {
           'bashls',
           'cssls',
           'eslint',
-          'gopls',
           'html',
           'jsonls',
           'lua_ls',
