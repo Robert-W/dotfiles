@@ -1,10 +1,12 @@
-# Load colors & VCS Info & completion
+# Autoload Colors, VCS Info, and Completion functions
 autoload -Uz colors vcs_info compinit
 
-# Run our autoloads
+# Initialize completions
+compinit
+
+# Run these autoloads before a prompt is displayed
 precmd() {
   vcs_info
-  compinit
   colors
 }
 
@@ -91,3 +93,7 @@ autoload ${fpath[1]}/*(:t)
 
 # Load any additional scripts to path
 export PATH="$HOME/.local/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
