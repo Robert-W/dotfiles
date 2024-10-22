@@ -3,6 +3,9 @@
 # Intall terminal
 brew install iterm2
 
+# Install jq
+brew install jq
+
 # Install Tmux and fzf
 brew install tmux fzf
 
