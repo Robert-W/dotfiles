@@ -19,6 +19,7 @@ return {
         ensure_installed = {
           'bashls',
           'cssls',
+          'elixirls',
           'eslint',
           'html',
           'jsonls',
