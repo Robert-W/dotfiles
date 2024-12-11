@@ -20,7 +20,7 @@ of these or you may need more.
 ## Link configuration files
 - `ln -s "$(pwd)/nvim" ~/.config/nvim`
 
-### ARM64 Mac Users
+### ARM64 Mac Users using Rosetta 2
 When running Treesitter update/install for language servers. If you are on an
 arm64 MAC you may get some errors about the architecture being incorrect. In
 that case, you need to uninstall all the `*.so` files and re-open nvim on Macs
@@ -28,3 +28,11 @@ native terminal. This will install/re-compile the correct language servers.
 
 Current path to the `*.so` files:
 - `~/.local/share/nvim/lazy/nvim-treesitter/parser/`
+
+The next issue you are likely to encounter is that the `telescope-fzf-native`
+package cannot build in an emulator using rosetta. So you need to build it in
+your native terminal app.
+
+1. `cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim`
+1. `make clean`
+1. `make`

@@ -1,6 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     'nvim-telescope/telescope-file-browser.nvim',
     'nvim-lua/popup.nvim',
     'nvim-lua/plenary.nvim',
@@ -76,9 +77,16 @@ return {
             },
           },
         },
+        fzf = {
+          case_mode = "smart_case",
+          fuzzy = true,
+          override_file_sorter = true,
+          override_generic_sorter = true,
+        }
       }
     })
 
     telescope.load_extension('file_browser')
+    telescope.load_extension('fzf')
   end,
 }
