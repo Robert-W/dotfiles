@@ -11,3 +11,6 @@ ln -s "$(pwd)/tmux/scripts" ~/.local/bin
 ln -s "$(pwd)/zsh/.zfunc" ~/.zfunc
 ln -s "$(pwd)/zsh/.zshrc" ~/.zshrc
 ln -s "$(pwd)/zsh/.zprofile" ~/.zprofile
+
+# Link Ghostty config
+ln -s "$(pwd)/ghostty/config" ~/.config/ghostty/config

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Intall terminal
-brew install iterm2
+brew install ghostty
 
 # Install jq
 brew install jq
