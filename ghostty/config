@@ -8,6 +8,7 @@ font-family-italic = OperatorMono Nerd Font Light Italic
 font-family-bold-italic = OperatorMono Nerd Font Bold Italic
 font-style = Book
 font-size = 14
+font-thicken = true
 
 # Other visual settings
 background-opacity = 0.95
