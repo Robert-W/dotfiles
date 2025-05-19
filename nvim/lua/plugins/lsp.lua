@@ -16,6 +16,7 @@ return {
 
       -- Mason LSP Config
       masoncfg.setup({
+        automatic_enable = true,
         ensure_installed = {
           'bashls',
           'cssls',
@@ -28,7 +29,7 @@ return {
           'sqlls',
           'terraformls',
           'ts_ls',
-        }
+        },
       })
 
       -- Install packages masoncfg cannot, these include linters,
@@ -41,15 +42,9 @@ return {
       })
 
       -- Setup all of our LSP servers
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      masoncfg.setup_handlers({
-        -- default handler for all servers
-        require('config.default_lsp').configure(capabilities),
-        -- override lsp servers here if you need custom implementation
-        ["lua_ls"] = require('config.lua_ls').configure(capabilities),
-        ["rust_analyzer"] = require('config.rust_analyzer').configure(capabilities),
-        ["ts_ls"] = require('config.ts_ls').configure(capabilities)
-      })
+      require('config.lua_ls').configure()
+      require('config.rust_analyzer').configure()
+      require('config.ts_ls').configure()
 
       -- Use this to setup all of our keybindings when a server attaches
       vim.api.nvim_create_autocmd('LspAttach', {

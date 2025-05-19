@@ -1,20 +1,17 @@
 local M = {}
 
-function M.configure(capabilities)
-  return function ()
-    require('lspconfig').rust_analyzer.setup({
-      capabilities = capabilities,
-      settings = {
-        ["rust_analyzer"] = {
-          inlayHints = {
-            parameterHints = {
-              enable = false
-            }
+function M.configure()
+  vim.lsp.config('rust_analyzer', {
+    settings = {
+      rust_analyzer = {
+        inlayhints = {
+          parameterhints = {
+            enable = false
           }
         }
       }
-    })
-  end
+    }
+  })
 end
 
 return M
