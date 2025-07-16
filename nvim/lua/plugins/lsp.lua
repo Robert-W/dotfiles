@@ -22,6 +22,7 @@ return {
           'cssls',
           'elixirls',
           'eslint',
+          'gopls',
           'html',
           'jsonls',
           'lua_ls',
