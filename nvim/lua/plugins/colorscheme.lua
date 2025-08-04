@@ -4,6 +4,12 @@ return {
   init = function()
     require('catppuccin').setup({
       flavour = 'mocha',
+      show_end_of_buffer = true,
+      term_colors = true,
+      transparent_background = true,
+      float = {
+        transparent = true
+      },
       integrations = {
         aerial = true,
         harpoon = true,
@@ -11,9 +17,8 @@ return {
         mason = true,
         neotree = true,
         notify = true,
+        treesitter = true
       },
-      transparent_background = true,
-      show_end_of_buffer = true,
       styles = {
         operators = { 'bold' },
         types = { 'bold' },
