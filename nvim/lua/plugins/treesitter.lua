@@ -7,10 +7,6 @@ return {
     },
     build = ':TSUpdate',
     init = function()
-      local function gonnaSlowMeDown(_, bufnr)
-        return vim.api.nvim_buf_line_count(bufnr) > 1000
-      end
-
       require('nvim-treesitter.configs').setup({
         ensure_installed = {
           'bash',
@@ -45,9 +41,6 @@ return {
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
-          disable = function(lang, bufnr)
-            return gonnaSlowMeDown(lang, bufnr)
-          end,
         },
         textobjects = {
           select = {
