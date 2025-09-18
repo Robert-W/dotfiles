@@ -1,5 +1,5 @@
 # Set the main theme
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 # Update font settings, this requires OperatorMono Nerd font to be installed
 font-family = OperatorMono Nerd Font
