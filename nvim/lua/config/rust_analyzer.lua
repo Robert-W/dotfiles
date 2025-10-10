@@ -3,7 +3,7 @@ local M = {}
 function M.configure()
   vim.lsp.config('rust_analyzer', {
     settings = {
-      rust_analyzer = {
+      ["rust-analyzer"] = {
         inlayhints = {
           parameterhints = {
             enable = false
