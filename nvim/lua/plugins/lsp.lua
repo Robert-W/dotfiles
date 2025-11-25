@@ -42,11 +42,6 @@ return {
         }
       })
 
-      -- Setup all of our LSP servers
-      require('config.lua_ls').configure()
-      require('config.rust_analyzer').configure()
-      require('config.ts_ls').configure()
-
       -- Use this to setup all of our keybindings when a server attaches
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(event)
