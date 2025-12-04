@@ -38,10 +38,26 @@ return {
       keymap = {
         ['<C-k>'] = { 'scroll_documentation_up', 'fallback' },
         ['<C-j>'] = { 'scroll_documentation_down', 'fallback' },
-        ['<C-c>'] = { 'cancel', 'fallback' },
+        ['<C-q>'] = { 'cancel', 'fallback' },
         ['<CR>'] = { 'select_and_accept', 'fallback' },
-        ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
-        ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
+        ['<Tab>'] = {
+          function (cmp)
+            local luasnip = require('luasnip')
+            if cmp.is_menu_visible() then return cmp.select_next()
+            elseif luasnip.locally_jumpable(1) then return luasnip.jump(1)
+            end
+          end,
+          'fallback_to_mappings'
+        },
+        ['<S-Tab>'] = {
+          function (cmp)
+            local luasnip = require('luasnip')
+            if cmp.is_menu_visible() then return cmp.select_prev()
+            elseif luasnip.locally_jumpable(-1) then return luasnip.jump(-1)
+            end
+          end,
+          'fallback_to_mappings'
+        },
       },
       snippets = {
         preset = 'luasnip'
