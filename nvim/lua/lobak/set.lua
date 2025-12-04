@@ -46,4 +46,5 @@ vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "80"
 vim.opt.termguicolors = true
 
+vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'indent'
