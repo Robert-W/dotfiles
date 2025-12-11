@@ -22,7 +22,7 @@ vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 -- Command line search options
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 vim.opt.hlsearch = false
 vim.opt.inccommand = 'split'
 vim.opt.incsearch = true
