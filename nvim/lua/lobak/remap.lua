@@ -1,5 +1,5 @@
 -- Non-plugin related mappings
--- Plugin specific mappings are in after/plugin/*.lua
+-- Plugin specific mappings are in lua/plugins/*.lua
 
 -- Paste but keep paste contents in paste register
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = 'Paste and keep contents in register' })
