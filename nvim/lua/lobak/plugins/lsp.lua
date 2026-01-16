@@ -52,7 +52,7 @@ return {
       -- Install packages masoncfg cannot, these include linters,
       -- formatters, and DAP packages. These do require additional setup, so
       -- these alone do nothing
-      require('utils.mason-packager').setup({
+      require('lobak.utils.mason-packager').setup({
         ensure_installed = {
           'codelldb',
         }

@@ -15,7 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load and configure our plugins
-require('lazy').setup("plugins", {
+require('lazy').setup('lobak.plugins', {
   change_detection = {
     enabled = false
   }
