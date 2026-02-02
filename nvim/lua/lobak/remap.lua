@@ -9,7 +9,7 @@ vim.keymap.set('n', '<esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear current sear
 
 -- Yank enhancements
 vim.keymap.set('n', 'Y', 'y$')
-vim.keymap.set('v', '<leader>y', [["+y]], { desc = 'copy the highlighted content to clipboard' })
+vim.keymap.set('v', '<leader>y', [["+y]], { desc = 'Copy the highlighted content to clipboard' })
 vim.keymap.set('n', '<leader>f', ":let @+=expand('%')<CR>", { desc = 'Copy current buffer filename to clipboard' })
 
 -- Keep the screen centered on the cursor when moving around
