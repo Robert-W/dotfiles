@@ -8,6 +8,9 @@ vim.g.netrw_banner = 0
 -- Show which line the cursor is on
 vim.opt.cursorline = true
 
+-- Confirm close unsaved buffers
+vim.opt.confirm = true
+
 -- Configure how we represent whitespace
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
@@ -23,7 +26,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 -- Command line search options
 vim.opt.cmdheight = 1
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.inccommand = 'split'
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
@@ -52,3 +55,10 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+
+-- Configure Diagnositcs
+vim.diagnostic.config({
+  float = { border = 'rounded' },
+  severity_sort = true,
+  virtual_text = true
+})

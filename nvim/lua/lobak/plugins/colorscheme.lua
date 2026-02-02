@@ -29,8 +29,5 @@ return {
     -- Set the colorscheme
     vim.cmd('colorscheme catppuccin')
 
-    -- Override some UI options, add borders to the following items
-    vim.diagnostic.config({ float = { border = 'rounded' }})
-
   end,
 }
