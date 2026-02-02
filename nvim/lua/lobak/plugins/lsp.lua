@@ -81,8 +81,6 @@ return {
         end
       })
 
-      -- Enable virtual text globally
-      vim.diagnostic.config({ virtual_text = true })
     end
   }
 }
