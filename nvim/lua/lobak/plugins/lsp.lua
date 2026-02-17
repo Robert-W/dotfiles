@@ -25,7 +25,7 @@ return {
         'lua_ls',
         'rust_analyzer',
         'sqlls',
-        'terraformls',
+        'tofu_ls',
         'ts_ls',
         'yamlls',
       }
