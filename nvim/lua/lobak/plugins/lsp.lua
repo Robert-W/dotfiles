@@ -18,16 +18,15 @@ return {
       local servers = {
         'bashls',
         'cssls',
-        'elixirls',
-        'eslint',
         'gopls',
         'html',
         'jsonls',
         'lua_ls',
         'rust_analyzer',
         'sqlls',
-        'terraformls',
+        'tofu_ls',
         'ts_ls',
+        'yamlls',
       }
 
       local capabilities = vim.tbl_deep_extend(
