@@ -18,7 +18,6 @@ return {
       local servers = {
         'bashls',
         'cssls',
-        'eslint',
         'gopls',
         'html',
         'jsonls',
