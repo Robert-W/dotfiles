@@ -11,7 +11,6 @@ return {
         ensure_installed = {
           'bash',
           'css',
-          'elixir',
           'go',
           'html',
           'javascript',
