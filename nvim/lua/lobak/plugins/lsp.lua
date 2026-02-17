@@ -27,6 +27,7 @@ return {
         'sqlls',
         'terraformls',
         'ts_ls',
+        'yamlls',
       }
 
       local capabilities = vim.tbl_deep_extend(
