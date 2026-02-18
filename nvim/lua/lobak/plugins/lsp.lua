@@ -80,6 +80,16 @@ return {
         end
       })
 
+      -- There is some strangeness around detecting filetypes, use this to enforce it
+      vim.filetype.add({
+        extension = {
+          tf = 'terraform',
+          tfvars = 'terraform',
+          tfstate = 'terraform',
+          tofu = 'opentofu',
+        }
+      })
+
     end
   }
 }
