@@ -1,0 +1,2 @@
+# Ignore scripts added by external dependencies
+tmux/scripts/claude
