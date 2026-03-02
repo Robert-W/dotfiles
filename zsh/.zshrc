@@ -53,7 +53,7 @@ local str='';
       if [ $is_modified -eq 1 ]; then
         str="%F{229}[${str}]%f";
       else
-        str=$'%F{82}\UF42E%f'
+        str=$'%F{85}\UF42E%f'
       fi;
 
     fi;
