@@ -53,7 +53,7 @@ local str='';
       if [ $is_modified -eq 1 ]; then
         str="%F{229}[${str}]%f";
       else
-        str=$'\UF6C8'
+        str=$'%F{82}\UF24E%f'
       fi;
 
     fi;
@@ -85,7 +85,7 @@ zstyle ':vcs_info:git:*' formats ' on %F{219}%b%f%m'
 #  = U+F6C8
 # ➜ = U+279C
 NEWLINE=$'\n'
-PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\UF6E4  %f%b';
+PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\U279C  %f%b';
 
 # Load functions from external directory
 fpath=(~/.zfunc $fpath)
@@ -94,6 +94,6 @@ autoload ${fpath[1]}/*(:t)
 # Load any additional scripts to path
 export PATH="$HOME/.local/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Setup nvm completion and home dir
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
