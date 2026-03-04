@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+kubectl config get-clusters \
+  | grep -v 'NAME' \
+  | fzf \
+  | xargs -I {} kubectl config use-context {}
