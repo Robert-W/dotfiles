@@ -91,8 +91,14 @@ PROMPT=$'%F{123}${PWD/#$HOME/~}%b%f${vcs_info_msg_0_}${NEWLINE}%B%F{85}\U279C  %
 fpath=(~/.zfunc $fpath)
 autoload ${fpath[1]}/*(:t)
 
-# Load any additional scripts to path
-export PATH="$HOME/.local/bin:$PATH"
+# Add any scripts/programs to path here and then export it
+# Handle OS specific paths first
+if [[ "$OSTYPE" == linux-* ]]; then
+  path+=('/opt/nvim-linux-x86_64/bin')
+fi
+
+path+=("$HOME/.local/bin")
+export PATH
 
 # Setup nvm completion and home dir
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
