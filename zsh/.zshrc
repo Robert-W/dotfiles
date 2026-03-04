@@ -95,8 +95,6 @@ autoload ${fpath[1]}/*(:t)
 # Handle OS specific paths first
 if [[ "$OSTYPE" == linux-* ]]; then
   path+=('/opt/nvim-linux-x86_64/bin')
-else
-  echo $OSTYPE
 fi
 
 path+=("$HOME/.local/bin")
