@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+BASE="/opt/nvim-linux-x86_64"
+BIN="${BASE}/bin"
+
+# Install it in opt for the linux version
+# TODO: Need to figure out where to store it in Mac
+if [[ "$OSTYPE" == linux-* ]]; then
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+  echo "This script requires sudo to remove old versions from $BASE and save the new one there."
+  sudo rm -rf /opt/nvim-linux-x86_64
+  sudo tar -C /opt -xvf nvim-linux-x86_64.tar.gz
+  rm nvim-linux-x86_64.tar.gz
+fi
+
+# If the user does not have neovim in the path, remind them to set it
+if ! [[ $PATH =~ $BIN ]]; then
+  echo "Please add ${BIN} to your PATH"
+fi
+
+echo "Neovim successfully installed/updated"
