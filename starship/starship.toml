@@ -1,0 +1,20 @@
+add_newline = false
+command_timeout = 3000
+format = "${directory}${git_branch}${git_status}${custom.aws}${kubernetes}${line_break}${character}"
+
+[custom.aws]
+command = 'echo $AWS_PROFILE'
+when = 'test -n "$AWS_PROFILE"'
+format = 'aws [$output]($style)'
+style = 'bold bright-purple'
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
+
+[git_branch]
+format = 'on [$branch]($style) '
+style = 'bold #ff70cd'
+
+[git_status]
+style = 'bold yellow'
