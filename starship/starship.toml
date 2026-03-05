@@ -1,0 +1,27 @@
+# format = """
+# ${directory} \
+# ${kubernetes} \
+# ${git_branch} \
+# ${git_status} \
+# ${python} \
+# ${terraform} \
+# ${custom.tofu} \
+# ${aws} \
+# ${env_var} \
+# ${line_break} \
+# ${character}"""
+
+add_newline = false
+command_timeout = 3000
+format = "${directory}${git_branch}${git_status}${kubernetes}${line_break}${character}"
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
+
+[git_branch]
+format = 'on [$branch]($style) '
+style = 'bold #ff70cd'
+
+[git_status]
+style = 'bold yellow'

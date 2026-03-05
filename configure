@@ -12,5 +12,8 @@ ln -s "$(pwd)/zsh/.zfunc" ~/.zfunc
 ln -s "$(pwd)/zsh/.zshrc" ~/.zshrc
 ln -s "$(pwd)/zsh/.zprofile" ~/.zprofile
 
+# Link starship configurations for a better prompt
+ln -s "$(pwd)/starship/starship.toml" ~/.config/starship.toml
+
 # Link Ghostty config
 ln -s "$(pwd)/ghostty/config" ~/.config/ghostty/config
