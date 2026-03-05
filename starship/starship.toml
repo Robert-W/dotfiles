@@ -1,19 +1,12 @@
-# format = """
-# ${directory} \
-# ${kubernetes} \
-# ${git_branch} \
-# ${git_status} \
-# ${python} \
-# ${terraform} \
-# ${custom.tofu} \
-# ${aws} \
-# ${env_var} \
-# ${line_break} \
-# ${character}"""
-
 add_newline = false
 command_timeout = 3000
-format = "${directory}${git_branch}${git_status}${kubernetes}${line_break}${character}"
+format = "${directory}${git_branch}${git_status}${custom.aws}${kubernetes}${line_break}${character}"
+
+[custom.aws]
+command = 'echo $AWS_PROFILE'
+when = 'test -n "$AWS_PROFILE"'
+format = 'aws [$output]($style)'
+style = 'bold bright-purple'
 
 [character]
 success_symbol = '[➜](bold green)'
