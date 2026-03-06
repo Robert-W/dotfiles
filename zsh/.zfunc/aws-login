@@ -21,6 +21,12 @@ if [[ -z "${ROLE_ARN}" || -z "${SERIAL_ARN}" ]];then
   return
 fi
 
+# Unset existing values as this will cause the assume role to fail
+unset AWS_ACCESS_KEY_ID
+unset AWS_SECRET_ACCESS_KEY
+unset AWS_SESSION_TOKEN
+unset AWS_PROFILE
+
 JSON=$(aws sts assume-role --role-arn ${ROLE_ARN} --role-session-name ${SESSION_NAME} --serial-number ${SERIAL_ARN} --token-code ${2})
 
 if [ $? -eq 0 ]; then
