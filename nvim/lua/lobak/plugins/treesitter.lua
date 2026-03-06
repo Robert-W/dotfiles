@@ -19,6 +19,7 @@ return {
         'rust',
         'sql',
         'terraform',
+        'toml',
         'tsx',
         'typescript',
         'vim',
@@ -32,6 +33,13 @@ return {
           :totable()
 
       require('nvim-treesitter').install(to_install)
+
+      -- Enable treesitter highlighting on all filetypes, can add more parsers
+      -- as needed when I come across files without
+      vim.api.nvim_create_autocmd({ "FileType" }, {
+        pattern = '*',
+        callback = function() pcall(function() vim.treesitter.start() end) end,
+      })
     end,
   },
   {

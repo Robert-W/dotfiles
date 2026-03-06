@@ -1,3 +1,4 @@
 # Ignore scripts added by external dependencies
+tmux/scripts/ansible*
 tmux/scripts/claude
 tmux/scripts/kubectl
