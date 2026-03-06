@@ -54,6 +54,7 @@ return {
       require('lobak.utils.mason-packager').setup({
         ensure_installed = {
           'codelldb',
+          'tree-sitter-cli',
         }
       })
 
