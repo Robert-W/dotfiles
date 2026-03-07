@@ -19,7 +19,6 @@ return {
         'rust',
         'sql',
         'terraform',
-        'toml',
         'tsx',
         'typescript',
         'vim',
