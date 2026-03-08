@@ -44,17 +44,17 @@ return {
           file_ignore_patterns = {
             'node_modules',
             'target',
-            '.git',
+            '.git$',
           },
         },
         live_grep = {
           hidden = true,
-          ignore = false,
+          no_ignore = true,
           only_sort_text = true,
           file_ignore_patterns = {
             'node_modules',
             'target',
-            '.git',
+            '.git$',
           },
         },
       },
