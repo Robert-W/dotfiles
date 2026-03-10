@@ -44,7 +44,7 @@ return {
           file_ignore_patterns = {
             'node_modules',
             'target',
-            '.git$',
+            '.git/',
           },
         },
         live_grep = {
@@ -53,7 +53,7 @@ return {
           file_ignore_patterns = {
             'node_modules',
             'target',
-            '.git$',
+            '.git/',
           },
         },
       },
