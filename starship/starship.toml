@@ -22,4 +22,4 @@ style = 'bold yellow'
 [kubernetes]
 disabled = false
 style = 'bold #70ffa4'
-format = 'k8s [$context(\($namespace\))]($style)'
+format = 'k8s [$context( \($namespace\))]($style)'
