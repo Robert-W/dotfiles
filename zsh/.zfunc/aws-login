@@ -23,6 +23,7 @@ fi
 
 # Unset existing values as this will cause the assume role to fail
 unset AWS_ACCESS_KEY_ID
+unset AWS_CREDENTIAL_EXPIRATION
 unset AWS_SECRET_ACCESS_KEY
 unset AWS_SESSION_TOKEN
 unset AWS_PROFILE
@@ -31,6 +32,7 @@ JSON=$(aws sts assume-role --role-arn ${ROLE_ARN} --role-session-name ${SESSION_
 
 if [ $? -eq 0 ]; then
   export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' <<< "${JSON}")
+  export AWS_CREDENTIAL_EXPIRATION=$(jq -r '.Credentials.Expiration' <<< "${JSON}")
   export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' <<< "${JSON}")
   export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' <<< "${JSON}")
   export AWS_PROFILE="${1}"
