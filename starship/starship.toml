@@ -3,7 +3,7 @@ command_timeout = 3000
 format = "${directory}${git_branch}${git_status}${aws}${kubernetes}${line_break}${character}"
 
 [aws]
-format = '(aws [$profile \[[$duration](bright-purple)\]]($style))'
+format = '(aws [$profile \[[$duration](bright-purple)\]]($style) )'
 style = 'bold bright-purple'
 
 [character]
@@ -20,4 +20,4 @@ style = 'bold yellow'
 [kubernetes]
 disabled = false
 style = 'bold #70ffa4'
-format = 'k8s [$context( \($namespace\))]($style)'
+format = 'k8s [$context( \($namespace\))]($style) '
