@@ -1,11 +1,9 @@
 add_newline = false
 command_timeout = 3000
-format = "${directory}${git_branch}${git_status}${custom.aws}${kubernetes}${line_break}${character}"
+format = "${directory}${git_branch}${git_status}${aws}${kubernetes}${line_break}${character}"
 
-[custom.aws]
-command = 'echo $AWS_PROFILE'
-when = 'test -n "$AWS_PROFILE"'
-format = 'aws [$output]($style) '
+[aws]
+format = '(aws [$profile \[[$duration](bright-purple)\]]($style))'
 style = 'bold bright-purple'
 
 [character]
