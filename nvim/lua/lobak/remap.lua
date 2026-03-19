@@ -2,7 +2,7 @@
 -- Plugin specific mappings are in lua/plugins/*.lua
 
 -- Paste but keep paste contents in paste register
-vim.keymap.set('x', '<leader>p', [['_dP]], { desc = 'Paste and keep contents in register' })
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste and keep contents in register' })
 
 -- Clear search once you are done with it
 vim.keymap.set('n', '<esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear current search highlight'})
