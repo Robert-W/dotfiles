@@ -1,5 +1,5 @@
--- Non-plugin related mappings
--- Plugin specific mappings are in lua/plugins/*.lua
+-- This file contains keymaps that are not plugin specific. Plugin specific
+-- keymaps should be defined alongside the plugins in plugins/*.lua
 
 -- Paste but keep paste contents in paste register
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste and keep contents in register' })
@@ -31,3 +31,4 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>j', ':m .+1<CR>==', { desc = 'Move current line down' })
 vim.keymap.set('n', '<leader>k', ':m .-2<CR>==', { desc = 'Move current line up' })
+
