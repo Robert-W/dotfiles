@@ -1,9 +1,9 @@
-return {
-  'nvim-lualine/lualine.nvim',
-  opts = {
+vim.pack.add({ 'https://github.com/nvim-lualine/lualine.nvim' })
+
+require('lualine').setup({
     options = {
       icons_enabled = true,
-      theme = 'catppuccin',
+      theme = 'auto',
       section_separators = { left = '', right = '' },
       component_separators = { left = '|', right = '|' },
       disabled_filetypes = {}
@@ -45,5 +45,4 @@ return {
     },
     tabline = {},
     extensions = { 'fugitive' }
-  }
-}
+})
