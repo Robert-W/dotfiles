@@ -1,7 +1,7 @@
 return {
   'stevearc/oil.nvim',
   dependencies = {
-    'nvim-tree/nvim-web-devicons'
+    { 'nvim-mini/mini.icons', opts = {}}
   },
   lazy = false,
   config = function()
