@@ -1,10 +1,3 @@
-vim.pack.add({
-  'http://github.com/nvim-treesitter/nvim-treesitter-context',
-  { src = 'http://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
-  'http://github.com/nvim-treesitter/nvim-treesitter',
-})
-
-
 local treesitter = require('nvim-treesitter')
 local ts_context = require('treesitter-context')
 local ts_textobjects = require('nvim-treesitter-textobjects')

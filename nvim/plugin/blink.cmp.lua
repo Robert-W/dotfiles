@@ -1,9 +1,3 @@
-vim.pack.add({
-  'https://github.com/rafamadriz/friendly-snippets',
-  'https://github.com/L3MON4D3/LuaSnip',
-  { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.x') },
-})
-
 local luasnip = require('luasnip')
 local blink = require('blink.cmp')
 

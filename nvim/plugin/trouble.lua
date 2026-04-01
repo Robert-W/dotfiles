@@ -1,5 +1,3 @@
-vim.pack.add({ 'https://github.com/folke/trouble.nvim' })
-
 require('trouble').setup()
 
 vim.keymap.set('n', '<leader>dw', '<cmd>Trouble diagnostics toggle<cr>',
