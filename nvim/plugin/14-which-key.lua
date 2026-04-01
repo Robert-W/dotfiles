@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
       { '<leader>d', group = '[D]iagnostics' },
       { '<leader>g', group = '[G]it' },
       { '<leader>h', group = '[H]arpoon' },
-      { '<leader>o', group = '[O]pen' },
       { '<leader>s', group = '[S]earch' },
       { '<leader>t', group = '[T]oggle' }
     })

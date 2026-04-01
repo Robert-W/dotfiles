@@ -8,5 +8,5 @@ oil.setup({
   }
 })
 
-vim.keymap.set('n', '<leader>oo', function() oil.open(nil, { preview = { split = 'belowright' } }, nil) end,
-{ desc = '[O]pen [O]il' })
+vim.keymap.set('n', '<leader>to', function() oil.open(nil, { preview = { split = 'belowright' } }, nil) end,
+{ desc = '[T]oggle [O]il' })
