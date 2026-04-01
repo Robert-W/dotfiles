@@ -3,6 +3,9 @@
 # Intall terminal
 brew install ghostty
 
+# Install starship
+brew install starship
+
 # Install jq
 brew install jq
 
