@@ -9,7 +9,6 @@ return {
     'williamboman/mason-lspconfig.nvim',
     dependencies = {
       'neovim/nvim-lspconfig',
-      'nvim-telescope/telescope.nvim'
     },
     config = function()
       local masoncfg = require('mason-lspconfig')
