@@ -1,4 +1,4 @@
--- This file defines are nvim settings
+-- This file defines global settings
 vim.g.mapleader = " "
 
 -- netrw settings
