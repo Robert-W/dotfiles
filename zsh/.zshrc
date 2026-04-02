@@ -23,6 +23,10 @@ if [[ "$OSTYPE" == linux-* ]]; then
   path+=('/opt/nvim-linux-x86_64/bin')
 fi
 
+if ! [[ $PATH =~ "$HOME/.local/bin" ]]; then
+  path+=("$HOME/.local/bin")i
+fi
+
 export PATH
 
 # Setup and bindkey or aliases

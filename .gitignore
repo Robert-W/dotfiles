@@ -1,0 +1,6 @@
+# Ignore tools that are installed by the system into the same directory
+# where I symlink my tmux scripts, ~/.local/bin
+tmux/scripts/ansible*
+tmux/scripts/claude
+tmux/scripts/kubectl
+tmux/scripts/uv*

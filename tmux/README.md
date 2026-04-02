@@ -9,5 +9,6 @@
 
 ## Link configuration files
 - `ln -s "$(pwd)/tmux/.tmux.conf" ~/.tmux.conf`
+- `ln -s "$(pwd)/tmux/scripts" ~/.local/bin`
 
 > May need to delete the `.tmux.conf` file if one already exists.
