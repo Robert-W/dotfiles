@@ -24,7 +24,7 @@ if [[ "$OSTYPE" == linux-* ]]; then
 fi
 
 if ! [[ $PATH =~ "$HOME/.local/bin" ]]; then
-  path+=("$HOME/.local/bin")i
+  path+=("$HOME/.local/bin")
 fi
 
 export PATH

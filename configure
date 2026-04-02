@@ -5,7 +5,7 @@ ln -s "$(pwd)/nvim" ~/.config/nvim
 
 # Link tmux configurations
 ln -s "$(pwd)/tmux/.tmux.conf" ~/.tmux.conf
-ln -s "$(pwd)/tmux/scripts" ~/.local/bin
+ln -s "$(pwd)/tmux/scripts/tmux-sessionizer" ~/.local/bin
 
 # Link zsh configurations
 ln -s "$(pwd)/zsh/.zfunc" ~/.zfunc
