@@ -23,8 +23,10 @@ if [[ "$OSTYPE" == linux-* ]]; then
   path+=('/opt/nvim-linux-x86_64/bin')
 fi
 
-path+=("$HOME/.local/bin")
 export PATH
+
+# Setup and bindkey or aliases
+bindkey -s ^f "tmux neww ~/.zfunc/tmux-sessionizer\n"
 
 # Setup nvm completion and home dir
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
