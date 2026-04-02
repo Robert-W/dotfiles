@@ -2,7 +2,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
   once = true,
   callback = function()
     vim.pack.add({ 'https://github.com/folke/which-key.nvim' })
-
     local whichkey = require('which-key')
 
     vim.o.timeout = true
