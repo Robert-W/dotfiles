@@ -1,5 +1,4 @@
-# Make sure brew is available
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# Setup and bindkey or aliases
-bindkey -s ^f "tmux-sessionizer\n"
+# Make sure brew is available when on OSX
+if [[ "$OSTYPE" == darwin-* ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
