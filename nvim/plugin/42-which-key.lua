@@ -1,7 +1,7 @@
-return {
-  'folke/which-key.nvim',
-  event = 'VimEnter',
-  init = function()
+vim.api.nvim_create_autocmd('VimEnter', {
+  once = true,
+  callback = function()
+    vim.pack.add({ 'https://github.com/folke/which-key.nvim' })
     local whichkey = require('which-key')
 
     vim.o.timeout = true
@@ -12,9 +12,8 @@ return {
       { '<leader>d', group = '[D]iagnostics' },
       { '<leader>g', group = '[G]it' },
       { '<leader>h', group = '[H]arpoon' },
-      { '<leader>o', group = '[O]pen' },
       { '<leader>s', group = '[S]earch' },
       { '<leader>t', group = '[T]oggle' }
     })
   end
-}
+})

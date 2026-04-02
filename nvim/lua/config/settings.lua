@@ -1,3 +1,4 @@
+-- This file defines global settings
 vim.g.mapleader = " "
 
 -- netrw settings
@@ -62,3 +63,4 @@ vim.diagnostic.config({
   severity_sort = true,
   virtual_text = true
 })
+
