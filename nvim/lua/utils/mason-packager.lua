@@ -44,6 +44,10 @@ end)
 function M.setup(options)
   local opts = vim.tbl_deep_extend('force', DEFAULT_SETTINGS, options)
 
+  -- refresh the registry, the first time this package runs it will fail
+  -- because the registry is empty, refresh it if necessary
+  registry.refresh()
+
   -- For every package passed in, lets install it
   for _, name in ipairs(opts.ensure_installed) do
     local pkg_name, version = package.Parse(name)

@@ -20,7 +20,7 @@ of these or you may need more.
 ## Link configuration files
 - `ln -s "$(pwd)/nvim" ~/.config/nvim`
 
-### Plugin Configuration Convention
+## Plugin Configuration Convention
 Plugins are defined and configired in `/plugin`. That directory is sourced in
 alphabetical order so I generally follow a fairly simple naming convention.
 
@@ -40,15 +40,10 @@ alphabetical order so I generally follow a fairly simple naming convention.
 lsp.lua
 ```
 
-### Known Issues
+## Known Issues
 Currently when you start from a fresh install, you'll get some errors and it
-requires you to restart twice to do the initial setup. This is because we use
-the mason regisrty to pull the tree-sitter-cli which is needed in the latest
-treesitter. The registry is not populated initially, but is after the first
-restart. Treesitter cannot install the parsers until the cli is installed. So
-you need to restart a second time and then everything is installed correctly.
-
-Adding a call to `registry.refresh()` in `/lua/utils/mason-packager.lua` fixes
-the initial issue with installing the tree-sitter-cli. However, it overrides
-some settings resulting in you needing to confirm every message. Once I fix
-this, I'll make some changes to make the initial setup cleaner.
+requires you to restart to complete the setup. The reason is that the treesitter
+parsers will fail to install without the tree-sitter-cli. The tree-sitter-cli is
+installed via mason but treesitter does not wait for that to be complete. If you
+restart neovim after mason finishes installing, treesitter will install all the
+parsers correctly and the setup is complete. Ill push a fix when I find one.
