@@ -20,19 +20,35 @@ of these or you may need more.
 ## Link configuration files
 - `ln -s "$(pwd)/nvim" ~/.config/nvim`
 
-### ARM64 Mac Users using Rosetta 2
-When running Treesitter update/install for language servers. If you are on an
-arm64 MAC you may get some errors about the architecture being incorrect. In
-that case, you need to uninstall all the `*.so` files and re-open nvim on Macs
-native terminal. This will install/re-compile the correct language servers.
+### Plugin Configuration Convention
+Plugins are defined and configired in `/plugin`. That directory is sourced in
+alphabetical order so I generally follow a fairly simple naming convention.
 
-Current path to the `*.so` files:
-- `~/.local/share/nvim/lazy/nvim-treesitter/parser/`
+```
+# Files you want to run first start with low numbers
+01-colorscheme.lua
 
-The next issue you are likely to encounter is that the `telescope-fzf-native`
-package cannot build in an emulator using rosetta. So you need to build it in
-your native terminal app.
+# Files that are dependencies for multiple plugins start with 40
+# These files should start with a comment mentioning which plugins depend on them
+40-plenary.lua
 
-1. `cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim`
-1. `make clean`
-1. `make`
+# Files that we want to lazy load start with 42 and run in autocmd's
+42-which-key.lua
+
+# All other plugin configurations that don't need to run first, or lazy load
+# are named by their use
+lsp.lua
+```
+
+### Known Issues
+Currently when you start from a fresh install, you'll get some errors and it
+requires you to restart twice to do the initial setup. This is because we use
+the mason regisrty to pull the tree-sitter-cli which is needed in the latest
+treesitter. The registry is not populated initially, but is after the first
+restart. Treesitter cannot install the parsers until the cli is installed. So
+you need to restart a second time and then everything is installed correctly.
+
+Adding a call to `registry.refresh()` in `/lua/utils/mason-packager.lua` fixes
+the initial issue with installing the tree-sitter-cli. However, it overrides
+some settings resulting in you needing to confirm every message. Once I fix
+this, I'll make some changes to make the initial setup cleaner.

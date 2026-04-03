@@ -1,3 +1,8 @@
+vim.pack.add({
+  'https://github.com/nvim-lua/popup.nvim',
+  'https://github.com/nvim-telescope/telescope.nvim',
+})
+
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
 local telescope = require('telescope')
