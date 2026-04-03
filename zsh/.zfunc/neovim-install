@@ -11,7 +11,7 @@ if [[ "$OSTYPE" == linux-* ]]; then
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
   echo $SUDO_WARNING
   sudo rm -rf $BASE
-  sudo tar -C $BASE -xvf nvim-linux-x86_64.tar.gz
+  sudo tar -C /opt -xvf nvim-linux-x86_64.tar.gz --one-top-level=nvim --strip-components=1
   rm nvim-linux-x86_64.tar.gz
 
 else
