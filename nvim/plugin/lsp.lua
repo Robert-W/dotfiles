@@ -1,3 +1,4 @@
+local masonpackager = require('utils.mason-packager')
 local masoncfg = require('mason-lspconfig')
 local blink = require('blink.cmp')
 local mason = require('mason')
@@ -40,7 +41,7 @@ masoncfg.setup({
 -- Install packages masoncfg cannot, these include linters,
 -- formatters, and DAP packages. These do require additional setup, so
 -- these alone do nothing
-require('utils.mason-packager').setup({
+masonpackager.setup({
   ensure_installed = {
     'codelldb',
     'tree-sitter-cli',
