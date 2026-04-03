@@ -41,6 +41,8 @@ masoncfg.setup({
 -- Install packages masoncfg cannot, these include linters,
 -- formatters, and DAP packages. These do require additional setup, so
 -- these alone do nothing
+-- TODO: This fails on the first install because mason-registry cannot get the
+-- packages listed here. See if there is a better way of doing this
 masonpackager.setup({
   ensure_installed = {
     'codelldb',
