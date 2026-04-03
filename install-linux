@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Install starship
+curl -sS https://starship.rs/install.sh | sh
+
+# Install tmux and fzf
+sudo apt install fzf tmux
+
+# Install ripgrep
+sudo apt-get install ripgrep
+
+# Install neovim manually after running the configure script
+echo "Run the configure script now if you havent already"
+echo "To install neovim, run 'neovim-install'"

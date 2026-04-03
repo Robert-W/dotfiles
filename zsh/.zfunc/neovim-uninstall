@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Double check to make sure we want to continue
+read "response?Are you sure you want to uninstall neovim? [y/N] "
+case "$response" in
+  [yY][eE][sS]|[yY]) echo "Deleting neovim's cache, state, and data" ;;
+  *) return ;;
+esac
+
+echo "This script requires sudo to delete /opt/nvim"
+sudo rm -rf /opt/nvim
+
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.cache/nvim

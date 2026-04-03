@@ -18,9 +18,8 @@ fpath=(~/.zfunc $fpath)
 autoload ${fpath[1]}/*(:t)
 
 # Add any scripts/programs to path here and then export it
-# Handle OS specific paths first
-if [[ "$OSTYPE" == linux-* ]]; then
-  path+=('/opt/nvim-linux-x86_64/bin')
+if ! [[ $PATH =~ "/opt/nvim/bin" ]]; then
+  path+=('/opt/nvim/bin')
 fi
 
 if ! [[ $PATH =~ "$HOME/.local/bin" ]]; then

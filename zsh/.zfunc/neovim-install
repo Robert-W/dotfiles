@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+BASE="/opt/nvim"
+BIN="${BASE}/bin"
+
+SUDO_WARNING="This script requires sudo to remove old versions from $BASE and save the new one there."
+
+# Install it in opt for the linux version
+if [[ "$OSTYPE" == linux-* ]]; then
+
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+  echo $SUDO_WARNING
+  sudo rm -rf $BASE
+  sudo tar -C /opt -xvf nvim-linux-x86_64.tar.gz --one-top-level=nvim --strip-components=1
+  rm nvim-linux-x86_64.tar.gz
+
+else
+  echo "This script does not support your OSTYPE: $OSTYPE"
+  # No need to exit and cause the terminal to exit, we can just return
+  return
+fi
+
+# If the user does not have neovim in the path, remind them to set it
+if ! [[ $PATH =~ $BIN ]]; then
+  echo "Please add ${BIN} to your PATH"
+fi
+
+echo "Neovim successfully installed/updated"
