@@ -14,7 +14,7 @@ vim.opt.confirm = true
 
 -- Configure how we represent whitespace
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { space = '·', tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Options needed for current companies development setup
 vim.opt.eol = false
