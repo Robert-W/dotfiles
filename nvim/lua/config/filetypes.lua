@@ -4,7 +4,7 @@ vim.filetype.add({
     tf = 'terraform',
     tfvars = 'terraform-vars',
     tfstate = 'terraform',
-    tofu = 'opentofu',
+    tofu = 'terraform',
   }
 })
 
