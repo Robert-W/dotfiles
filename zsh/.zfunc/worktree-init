@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# This function creates a directory and sets up a bare repository in it to be
+# used with worktrees.
+
+if [[ -z "${1}" || -z "${2}" ]]; then
+  echo "Usage: worktree-init DIR REPO_URL"
+  return
+fi
+
+if [[ -d "$1" ]]; then
+  echo "${1} already exists, choose a different directory name"
+  return 1
+fi
+
+mkdir "$1" && cd "$1"
+
+# Clone as bare repo with single branch of history
+git clone --bare --single-branch "$2" .git
+
+# Fetch all available remote branches as refs
+git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+git fetch origin
+
+# Get the default branch and add it as a worktree if we can reliably determine it
+default_branch="$(git symbolic-ref --short HEAD 2>/dev/null)"
+
+if [[ -n "$default_branch" ]]; then
+  git worktree add $default_branch $default_branch
+else
+  echo "Unable to detect the default branch, no worktree automatically added"
+fi
