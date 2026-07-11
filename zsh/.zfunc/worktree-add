@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# This function creates a worktree, a new branch, and sets the upstream
+# If you want to add a worktree for an existing branch,
+# just use git worktre add <dir> <branch>
+
+if [[ -z "${1}" || -z "${2}" ]]; then
+  echo "Usage: worktree-add DIR BRANCH_NAME"
+  return 1
+fi
+
+git worktree add "$1" -b "$2"
+git -C "$1" push -u origin "$2"
