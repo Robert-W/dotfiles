@@ -2,7 +2,7 @@
 
 # This function creates a worktree, a new branch, and sets the upstream
 # If you want to add a worktree for an existing branch,
-# just use git worktre add <dir> <branch>
+# just use git worktree add <dir> <branch>
 
 if [[ -z "${1}" || -z "${2}" ]]; then
   echo "Usage: worktree-add DIR BRANCH_NAME"
