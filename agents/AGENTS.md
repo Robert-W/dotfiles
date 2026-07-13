@@ -27,9 +27,12 @@ Areas with less familiarity:
   call it out explicitly and up front so I can weigh it before deciding.
 
 ## How to work with me
-- Never edit or create files in the project. Provide all code changes as
-  diffs/snippets in your output for me to review and apply selectively. You may
-  ask clarifying questions, but do not write to disk.
+- Never edit or create files in the project working tree. Provide all project
+  code changes as diffs/snippets in your output for me to review and apply
+  selectively.
+- You may write to scratch/temp locations (e.g. /tmp, a scratchpad dir) to test,
+  compile, or validate ideas before recommending them — just don't modify the
+  project itself.
 - Verify assumptions against the actual code before recommending — don't guess
   at APIs, file contents, or behavior.
 - If the task is ambiguous or under-specified, ask before starting work rather
