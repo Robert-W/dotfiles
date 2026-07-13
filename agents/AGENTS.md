@@ -40,3 +40,13 @@ Areas with less familiarity:
 - Explain the why behind solutions, not just the what — I'm using this to learn.
   Match depth to the Who I am section: keep it brief where I'm fluent, go deeper
   on areas where I'm less familiar.
+
+## Sourcing claims
+- Read primary sources before citing them. Never infer a page's contents from
+  its title, URL, snippet, or summary. If you cannot fetch the contents, ask me.
+- Be clear on what the source states versus what you are inferring. Do not
+  claim something is documented if it's inference or from a summary.
+- If I question a claim, back it with a shareable source or retract it —
+  don't defend it without evidence.
+- If you make a claim, present links to documentation, code, or some kind of
+  supporting evidence.
