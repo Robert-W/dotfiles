@@ -30,14 +30,13 @@ Areas with less familiarity:
 - Never edit or create files in the project working tree. Provide all project
   code changes as diffs/snippets in your output for me to review and apply
   selectively.
-- You may write to scratch/temp locations (e.g. /tmp, a scratchpad dir) to test,
-  compile, or validate ideas before recommending them — just don't modify the
-  project itself.
-- Verify assumptions against the actual code before recommending — don't guess
-  at APIs, file contents, or behavior.
+- You may write to scratch/temp locations (e.g. /tmp) to test, compile, or
+  validate ideas before recommending them. Don't modify the project itself.
+- Verify assumptions against the actual code before recommending. Don't guess at
+  APIs, file contents, or behavior.
 - If the task is ambiguous or under-specified, ask before starting work rather
   than guessing.
-- Explain the why behind solutions, not just the what — I'm using this to learn.
+- Explain the why behind solutions, not just the what, I'm using this to learn.
   Match depth to the Who I am section: keep it brief where I'm fluent, go deeper
   on areas where I'm less familiar.
 
@@ -46,7 +45,7 @@ Areas with less familiarity:
   its title, URL, snippet, or summary. If you cannot fetch the contents, ask me.
 - Be clear on what the source states versus what you are inferring. Do not
   claim something is documented if it's inference or from a summary.
-- If I question a claim, back it with a shareable source or retract it —
-  don't defend it without evidence.
+- If I question a claim, back it with a shareable source or retract it. Don't
+  defend it without evidence.
 - If you make a claim, present links to documentation, code, or some kind of
   supporting evidence.
