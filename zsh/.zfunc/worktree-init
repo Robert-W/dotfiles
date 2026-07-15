@@ -23,10 +23,13 @@ git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 git fetch origin
 
 # Get the default branch and add it as a worktree if we can reliably determine it
+# Usually we dont do work here, but its nice to have locally for reference or to
+# compare how something runs on a feature branch vs main/master
 default_branch="$(git symbolic-ref --short HEAD 2>/dev/null)"
 
 if [[ -n "$default_branch" ]]; then
   git worktree add $default_branch $default_branch
+  git -C "$default_branch" branch --set-upstream-to="origin/$default_branch" "$default_branch"
 else
   echo "Unable to detect the default branch, no worktree automatically added"
 fi
