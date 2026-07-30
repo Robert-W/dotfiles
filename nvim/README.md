@@ -41,9 +41,15 @@ lsp.lua
 ```
 
 ## Known Issues
-Currently when you start from a fresh install, you'll get some errors and it
-requires you to restart to complete the setup. The reason is that the treesitter
-parsers will fail to install without the tree-sitter-cli. The tree-sitter-cli is
-installed via mason but treesitter does not wait for that to be complete. If you
-restart neovim after mason finishes installing, treesitter will install all the
-parsers correctly and the setup is complete. Ill push a fix when I find one.
+
+- Currently when you start from a fresh install, you'll get some errors and it
+  requires you to restart to complete the setup. The reason is that the treesitter
+  parsers will fail to install without the tree-sitter-cli. The tree-sitter-cli is
+  installed via mason but treesitter does not wait for that to be complete. If you
+  restart neovim after mason finishes installing, treesitter will install all the
+  parsers correctly and the setup is complete. Ill push a fix when I find one.
+- If you manage your node versions with NVM. Updating NVM can cause any node
+  based LSP's to stop working. You should set a default alias to prevent this.
+  Run `nvm alias default lts/*` to default to the latest version, or pick a
+  specific version if necessary.
+
