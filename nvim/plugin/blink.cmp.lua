@@ -39,6 +39,7 @@ blink.setup({
     ['<C-k>'] = { 'scroll_documentation_up', 'fallback' },
     ['<C-j>'] = { 'scroll_documentation_down', 'fallback' },
     ['<C-q>'] = { 'cancel', 'fallback' },
+    ['<C-y>'] = { 'accept', 'fallback' },
     ['<CR>'] = { 'select_and_accept', 'fallback' },
     ['<Tab>'] = {
       function(cmp)
