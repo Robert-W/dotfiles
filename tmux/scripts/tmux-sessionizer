@@ -1,29 +1,76 @@
 #!/usr/bin/env bash
 
-# Can add option to parse argument later which will override the value
-# for selected, for now, just use the basic fzf option
-selected=$(find ~/personal ~/projects -mindepth 1 -maxdepth 1 -type d | fzf)
+roots=(~/personal ~/projects)
 
-if [ -z $selected ]; then
+# This should list worktrees, worktree roots, non-worktree repos, and dirs
+# This emits <display-name>\t<session-name>. We'll display the display name with
+# fzf and then use the session name when it's selected
+list_targets() {
+  local root dir worktree repo name tag bare
+  for root in "${roots[@]}"; do
+    # Guard against a misconfig or directories that are on work machines but not
+    # personal machines since this script lives on both
+    [[ -d $root ]] || continue
+
+    for dir in "$root"/*/; do
+      # Strip trailing slashes and skip iter if this is a file, I only want dirs
+      dir=${dir%/}
+      [[ -d $dir ]] || continue
+
+      # No git directory, this is just a plain directory/scratch project
+      if [[ ! -e $dir/.git ]]; then
+        printf '%-52s %s\t%s\n' "$dir" "[dir]" "$(basename "$dir")"
+        continue
+      fi
+
+      # It's a git repo, figure out if it's worktree root, normal repo, or a worktree
+      repo=$(basename "$dir")
+      bare=$(git -C "$dir" rev-parse --is-bare-repository 2>/dev/null)
+
+      while IFS= read -r worktree; do
+        if [[ $worktree == "$dir" ]]; then
+          name=$repo
+          [[ $bare == true ]] && tag="[worktree-root]" || tag="[repo]"
+        else
+          name="$repo/$(basename "$worktree")"
+          tag="[worktree]"
+        fi
+        printf '%-52s %s\t%s\n' "$worktree" "$tag" "$name"
+      done < <(git -C "$dir" worktree list --porcelain 2>/dev/null | awk '/^worktree /{ print substr($0, 10) }')
+
+    done
+  done
+}
+
+selected=$(list_targets | fzf --delimiter='\t' --with-nth=1)
+
+if [[ -z $selected ]]; then
   exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
-tmux_has_clients=$(tmux list-clients)
+# selected looks like <path with padding> [tag] \t <session-name>
+# parse the session name and replace invalid chars with _
+session_name=$(cut -f2 <<<"$selected" | tr './:' '_')
+# Parse the path to use as our starting directory
+# Use sed to delete the tag suffix from the path
+start_directory=$(cut -f1 <<<"$selected" | sed 's/ *\[[a-z-]*\] *$//')
+tmux_has_clients=$(tmux list-clients 2>/dev/null)
 
 # If there is no client running, create one by attaching to an existing
 # session or creating a new session if one doesn't exist
 if [[ -z $tmux_has_clients ]]; then
-  if tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux attach-session -t $selected_name
+  if tmux has-session -t="$session_name" 2> /dev/null; then
+    tmux attach-session -t "$session_name"
   else
-    tmux new-session -s $selected_name -c $selected
+    tmux new-session -s "$session_name" -c "$start_directory"
   fi
   exit 0
 fi
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-  tmux new-session -ds $selected_name -c $selected
+# We dont want to nest tmux sessions, so if we have one, create the new session
+# detached and then switch to it below
+if ! tmux has-session -t="$session_name" 2> /dev/null; then
+  tmux new-session -ds "$session_name" -c "$start_directory"
 fi
 
-tmux switch-client -t $selected_name
+tmux switch-client -t "$session_name"
