@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-roots=(~/personal ~/projects)
+roots=(~/personal ~/projects ~/work)
 
 # This should list worktrees, worktree roots, non-worktree repos, and dirs
 # This emits <display-name>\t<session-name>. We'll display the display name with
