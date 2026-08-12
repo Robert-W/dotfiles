@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-roots=(~/personal ~/projects)
+roots=(~/personal ~/projects ~/work)
 
 # Add some formatting to what we print in fzf
 print_target() {
