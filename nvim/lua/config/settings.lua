@@ -57,6 +57,11 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
+-- Ripgrep configurations
+if vim.fn.executable('rg') == 1 then
+  vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
+end
+
 -- Configure Diagnositcs
 vim.diagnostic.config({
   float = { border = 'rounded' },
