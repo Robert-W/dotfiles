@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# This function removes the worktree, branch, and tmux session if present
+# It is expected to be run from either the worktree root or a worktree
+if [[ -z "${1}" || -z "${2}" ]]; then
+  echo "Usage: worktree-clean WORKTREE_NAME BRANCH_NAME"
+  return 1
+fi
+
+local worktree_name=$1
+local branch_name=$2
+local exit_code=0
+local git_common_dir worktree_root session_name
+
+# Get the worktree root and cd into it
+git_common_dir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || {
+  echo "worktree-clean: not inside a git repository" >&2
+  return 1
+}
+worktree_root=$(dirname "$git_common_dir")
+cd "$worktree_root" || return 1
+
+# Generate the session name. Must match tmux-sessionizer's scheme:
+# <repo>/<worktree> with . / : collapsed to _
+session_name="$(basename "$worktree_root")/$(basename "$worktree_name")"
+session_name=$(tr './:' '_' <<<"$session_name")
+
+# Remove the worktree
+if git worktree remove "$worktree_name"; then
+  echo "worktree-clean: removed worktree ${worktree_name}"
+else
+  echo "worktree-clean: unable to remove worktree ${worktree_name} (worktree name should be directory name or full path)" >&2
+  exit_code=1
+fi
+
+# Remove the branch
+if git branch -D "$branch_name"; then
+  echo "worktree-clean: deleted branch ${branch_name}"
+else
+  echo "worktree-clean: unable to delete branch ${branch_name}" >&2
+  exit_code=1
+fi
+
+# Kill the tmux-session as long as we are not in it, if we are, just echo that
+# we need to run it manually. Only run this if we are in a tmux client.
+if [[ -n $TMUX && $(tmux display-message -p '#S' 2>/dev/null) == "$session_name" ]]; then
+  echo "worktree-clean: tmux is currently attached to ${session_name}. Kill from another session" >&2
+  exit_code=1
+elif tmux kill-session -t="$session_name"; then
+  echo "worktree-clean: killed tmux session ${session_name}"
+else
+  echo "worktree-clean: unable to kill tmux session ${session_name}" >&2
+  exit_code=1
+fi
+
+return $exit_code
