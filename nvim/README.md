@@ -1,12 +1,12 @@
 # Neovim Setup
 
-## Requirements
-- [Homebrew](https://brew.sh)
+## Link configuration files
+- `ln -s "$(pwd)/nvim" ~/.config/nvim`
 
-## Brew packages
-- `brew install neovim`
-- `brew install ripgrep`
-- `brew install node` (LSP requirements)
+## Dependencies
+You need neovim, ripgrep and node. Commands to install neovim and ripgrep are in
+the install scripts. Node should be installed via nvm. See [Language
+Support](#language-support) below.
 
 ## Language Support
 Some of the LSP servers will not install correctly without installing the
@@ -15,10 +15,7 @@ of these or you may need more.
 
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Go](https://go.dev/doc/install)
-- [Node](https://nodejs.org/en/download/package-manager) or [Bun](https://bun.sh/docs/installation)
-
-## Link configuration files
-- `ln -s "$(pwd)/nvim" ~/.config/nvim`
+- [NVM](https://www.nvmnode.com/guide/installation.html#nvm-install-for-linux-macos)
 
 ## Plugin Configuration Convention
 Plugins are defined and configired in `/plugin`. That directory is sourced in
@@ -52,4 +49,3 @@ lsp.lua
   based LSP's to stop working. You should set a default alias to prevent this.
   Run `nvm alias default lts/*` to default to the latest version, or pick a
   specific version if necessary.
-

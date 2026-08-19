@@ -1,8 +1,8 @@
 # dotfiles
 My development configurations
 
-## Requirements
+## Requirements for Mac
 - [Homebrew](https://brew.sh)
 
 ## Setup
-Run the `install` and `configure` scripts.
+Run the `install-osx` or `install-linux` and `configure` scripts.

@@ -9,6 +9,9 @@ brew install starship
 # Install jq
 brew install jq
 
+# Install awscli
+brew install awscli
+
 # Install Tmux and fzf
 brew install tmux fzf
 
