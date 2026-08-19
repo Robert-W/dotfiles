@@ -3,11 +3,14 @@
 # Install starship
 curl -sS https://starship.rs/install.sh | sh
 
-# Install tmux and fzf
-sudo apt install fzf tmux
+# Install tmux, fzf, jq, and zsh
+sudo apt install fzf tmux jq zsh
 
 # Install ripgrep
 sudo apt-get install ripgrep
+
+# Install awscli
+curl -fsSL https://awscli.amazonaws.com/v2/install.sh | bash
 
 # Install neovim manually after running the configure script
 echo "Run the configure script now if you havent already"

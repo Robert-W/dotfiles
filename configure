@@ -21,3 +21,6 @@ ln -s "$(pwd)/agents/AGENTS.md" ~/.config/opencode/AGENTS.md
 
 # Link Ghostty config
 ln -s "$(pwd)/ghostty/config" ~/.config/ghostty/config
+
+# Make zsh the default shell
+chsh -s $(which zsh)
