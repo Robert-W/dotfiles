@@ -18,8 +18,14 @@ fpath=(~/.zfunc $fpath)
 autoload ${fpath[1]}/*(:t)
 
 # Add any scripts/programs to path here and then export it
-if ! [[ $PATH =~ "/opt/nvim/bin" ]]; then
+if [[ -d /opt/nvim/bin ]] && ! [[ $PATH =~ "/opt/nvim/bin" ]]; then
   path+=('/opt/nvim/bin')
+fi
+
+# Add golang
+if [[ -d /usr/local/go/bin ]] && ! [[ $PATH =~ "/usr/local/go/bin" ]]; then
+  path+=('/usr/local/go/bin')
+  path+=("${GOPATH:-$HOME/go}/bin")
 fi
 
 if ! [[ $PATH =~ "$HOME/.local/bin" ]]; then
