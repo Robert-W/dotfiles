@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+BASE="/usr/local/go"
+
+# Double check to make sure we want to continue
+read "response?Are you sure you want to uninstall go? [y/N] "
+case "$response" in
+  [yY][eE][sS]|[yY]) echo "Deleting go, its caches, and anything installed with go install" ;;
+  *) return ;;
+esac
+
+# Get the path to the tools and remove them
+# If we still have go installed, clean the cache
+local tools
+if command -v go > /dev/null; then
+  tools="$(go env GOPATH)/bin"
+  go clean -modcache -cache
+else
+  tools="${GOPATH:-$HOME/go}/bin"
+fi
+
+# Anything installed with go install
+rm -rf "$tools"
+
+echo "This script requires sudo to delete $BASE"
+sudo rm -rf $BASE
+
+# The macOS pkg leaves a receipt behind even once the files are gone
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  sudo pkgutil --forget org.golang.go
+fi

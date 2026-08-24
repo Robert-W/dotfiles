@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+BASE="/usr/local/go"
+BIN="$BASE/bin"
+
+SUDO_WARNING="This script requires sudo to remove old versions from $BASE and save the new one there."
+
+# Get the latest version
+local version=$(curl -s "https://go.dev/dl/?mode=json" | jq -r '.[0].version')
+local arch
+case "$(uname -m)" in
+  x86_64)        arch="amd64" ;;
+  arm64|aarch64) arch="arm64" ;;
+  *)
+    echo "Unsupported architecture detected: $(uname -m)"
+    return
+    ;;
+esac
+
+# Fetch the correct binary for the system we are on and perform the install
+local installer
+if [[ "$OSTYPE" == linux-* ]]; then
+  installer="$version.linux-$arch.tar.gz"
+  curl -fLO "go.dev/dl/$installer" || return
+  echo $SUDO_WARNING
+  sudo rm -rf $BASE
+  sudo tar -C /usr/local -xzf "$installer"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # OSX is assuming an arm processor since all the macs I own are on arm
+  # processors at this point
+  installer="$version.darwin-$arch.pkg"
+  curl -fLO "https://go.dev/dl/$installer" || return
+  # -target takes a volume, not a directory; the pkg unpacks itself into $BASE
+  # It also removes previous installations with it's preinstall script
+  sudo installer -pkg "$installer" -target /
+else
+  echo "This script does not support your OSTYPE: $OSTYPE"
+  # No need to exit and cause the terminal to exit, we can just return
+  return
+fi
+
+rm "$installer"
+
+# If the user does not have go in the path, remind them to set it
+if ! [[ $PATH =~ $BIN ]]; then
+  echo "Please add ${BIN} to your PATH"
+fi
+
+echo "Go version $version successfully installed/updated"
