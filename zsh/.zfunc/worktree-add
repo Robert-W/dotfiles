@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # This function creates a worktree, a new branch, and sets the upstream
 # If you want to add a worktree for an existing branch,

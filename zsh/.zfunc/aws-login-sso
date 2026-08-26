@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Requires JQ and awscli, brew install jq awscli
 
 if [ -z "${1}" ]; then

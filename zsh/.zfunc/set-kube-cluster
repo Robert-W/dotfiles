@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 kubectl config get-clusters \
   | grep -v 'NAME' \
