@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # This function removes the worktree, branch, and tmux session if present
 # It is expected to be run from either the worktree root or a worktree

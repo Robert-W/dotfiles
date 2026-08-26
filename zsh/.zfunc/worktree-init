@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # This function creates a directory and sets up a bare repository in it to be
 # used with worktrees.

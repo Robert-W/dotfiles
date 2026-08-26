@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Double check to make sure we want to continue
 read "response?Are you sure you want to uninstall neovim? [y/N] "

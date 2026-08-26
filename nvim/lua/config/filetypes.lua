@@ -5,6 +5,9 @@ vim.filetype.add({
     tfvars = 'terraform-vars',
     tfstate = 'terraform',
     tofu = 'terraform',
+  },
+  pattern = {
+    ['.*/%.zfunc/.*'] = 'zsh',
   }
 })
 

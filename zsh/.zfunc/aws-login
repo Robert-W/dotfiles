@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 # Requires JQ and the AWS CLI
 
 if [[ -z "${1}" || -z "${2}" ]]; then
