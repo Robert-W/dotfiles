@@ -17,6 +17,16 @@ eval "$(starship init zsh)"
 fpath=(~/.zfunc $fpath)
 autoload ${fpath[1]}/*(:t)
 
+# Override ZSH defaults
+# This overrides the auto-removable suffix characters during tab completion. The
+# following is default, ZLE_REMOVE_SUFFIX_CHARS=$' \t\n;&|'. Which means after
+# tab completion, if you press those characters, it consumes the space and
+# places that char. This is fine for $' \t\n;', pipe is annoying because if I
+# tab complete a filepath then use pipe, the space is consumed. Adding &| to
+# ZLE_SPACE_SUFFIX_CHARS allows zsh to consume the space, but then adds it back.
+# Other completion functions can override this, so this may need to be tweaked.
+ZLE_SPACE_SUFFIX_CHARS=$'&|'
+
 # Add any scripts/programs to path here and then export it
 if [[ -d /opt/nvim/bin ]] && ! [[ $PATH =~ "/opt/nvim/bin" ]]; then
   path+=('/opt/nvim/bin')
