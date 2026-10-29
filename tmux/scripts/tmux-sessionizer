@@ -2,6 +2,24 @@
 
 roots=(~/personal ~/projects)
 
+# Add some formatting to what we print in fzf
+print_target() {
+  local columns=$1 path=$2 tag=$3 session_name=$4 color
+  case $tag in
+    "[worktree]") color=32 ;;      # green
+    "[worktree-root]") color=35 ;; # magenta
+    "[repo]") color=34 ;;          # blue
+    *) color=33 ;;                 # yellow ([dir])
+  esac
+  # %-*s takes path and pads it with columns - tag spaces (right aligning tag)
+  # \e[ start of escape sequence in ansi
+  # 1;%sm 1 is bold; %s is color, m ends the sequence
+  # %s is tag
+  # \e[0m reset all styles and end sequence
+  # %s\n session name and newline
+  printf '%-*s \e[1;%sm%s\e[0m\t%s\n' "$((columns - ${#tag}))" "$path" "$color" "$tag" "$session_name"
+}
+
 # This should list worktrees, worktree roots, non-worktree repos, and dirs
 # This emits <display-name> <tag>\t<session-name>. We'll display the display
 # name and tag with fzf and then use the session name when it's selected
@@ -25,8 +43,7 @@ list_targets() {
 
       # No git directory, this is just a plain directory/scratch project
       if [[ ! -e $dir/.git ]]; then
-        tag="[dir]"
-        printf '%-*s %s\t%s\n' "$((columns - ${#tag}))" "$dir" "$tag" "$(basename "$dir")"
+        print_target "$columns" "$dir" "[dir]" "$(basename "$dir")"
         continue
       fi
 
@@ -42,14 +59,14 @@ list_targets() {
           name="$repo/$(basename "$worktree")"
           tag="[worktree]"
         fi
-        printf '%-*s %s\t%s\n' "$((columns - ${#tag}))" "$worktree" "$tag" "$name"
+        print_target "$columns" "$worktree" "$tag" "$name"
       done < <(git -C "$dir" worktree list --porcelain 2>/dev/null | awk '/^worktree /{ print substr($0, 10) }')
 
     done
   done
 }
 
-selected=$(list_targets | fzf --delimiter='\t' --with-nth=1)
+selected=$(list_targets | fzf --ansi --delimiter='\t' --with-nth=1)
 
 if [[ -z $selected ]]; then
   exit 0
