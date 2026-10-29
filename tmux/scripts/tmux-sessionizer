@@ -3,10 +3,16 @@
 roots=(~/personal ~/projects)
 
 # This should list worktrees, worktree roots, non-worktree repos, and dirs
-# This emits <display-name>\t<session-name>. We'll display the display name with
-# fzf and then use the session name when it's selected
+# This emits <display-name> <tag>\t<session-name>. We'll display the display
+# name and tag with fzf and then use the session name when it's selected
 list_targets() {
-  local root dir worktree repo name tag bare
+  local root dir worktree repo name tag bare columns
+  # Get the column width of the terminal, stty size returns row col, keep col
+  # We'll use this to print display name followed by columns - 4 for padding -
+  # the width of the tag to achieve pinning the tag to the right of the screen
+  # (4 is chosen because fzf uses 3 and I want 1 before the tag)
+  read -r _ columns < <(stty size </dev/tty)
+  columns=$((columns - 4))
   for root in "${roots[@]}"; do
     # Guard against a misconfig or directories that are on work machines but not
     # personal machines since this script lives on both
@@ -19,7 +25,8 @@ list_targets() {
 
       # No git directory, this is just a plain directory/scratch project
       if [[ ! -e $dir/.git ]]; then
-        printf '%-52s %s\t%s\n' "$dir" "[dir]" "$(basename "$dir")"
+        tag="[dir]"
+        printf '%-*s %s\t%s\n' "$((columns - ${#tag}))" "$dir" "$tag" "$(basename "$dir")"
         continue
       fi
 
@@ -35,7 +42,7 @@ list_targets() {
           name="$repo/$(basename "$worktree")"
           tag="[worktree]"
         fi
-        printf '%-52s %s\t%s\n' "$worktree" "$tag" "$name"
+        printf '%-*s %s\t%s\n' "$((columns - ${#tag}))" "$worktree" "$tag" "$name"
       done < <(git -C "$dir" worktree list --porcelain 2>/dev/null | awk '/^worktree /{ print substr($0, 10) }')
 
     done
