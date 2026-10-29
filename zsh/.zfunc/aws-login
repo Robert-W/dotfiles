@@ -32,7 +32,6 @@ JSON=$(aws sts assume-role \
   --role-arn ${ROLE_ARN} \
   --role-session-name ${SESSION_NAME} \
   --serial-number ${SERIAL_ARN} \
-  --duration-seconds 14400 \
   --token-code ${2})
 
 if [ $? -eq 0 ]; then
