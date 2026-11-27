@@ -27,11 +27,10 @@ Areas with less familiarity:
   call it out explicitly and up front so I can weigh it before deciding.
 
 ## How to work with me
-- Never edit or create files in the project working tree. Provide all project
-  code changes as diffs/snippets in your output for me to review and apply
-  selectively.
+- Never edit or create files in the project working tree. Deliver changes as
+  patch files (see "Delivering changes").
 - You may write to scratch/temp locations (e.g. /tmp) to test, compile, or
-  validate ideas before recommending them. Don't modify the project itself.
+  validate ideas before recommending them.
 - Verify assumptions against the actual code before recommending. Don't guess at
   APIs, file contents, or behavior.
 - If the task is ambiguous or under-specified, ask before starting work rather
@@ -39,6 +38,27 @@ Areas with less familiarity:
 - Explain the why behind solutions, not just the what, I'm using this to learn.
   Match depth to the Who I am section: keep it brief where I'm fluent, go deeper
   on areas where I'm less familiar.
+
+## Delivering changes
+Deliver changes as an ordered series of patch files, one atomic commit each:
+one logical change, with no unrelated refactors, formatting, typo or bug fixes.
+Mention unrelated issues instead of fixing them. Each patch must apply on top
+of the previous ones and, where feasible, leave the project building and
+passing tests.
+
+1. `git clone <project> <scratch>/<repo>-<topic>`; `<base>` is the project's
+   `HEAD`. If uncommitted changes in the project matter, ask first.
+2. Commit each patch in the repo's commit style, subject under 80 characters.
+3. Even if the harness has its own scratch directory, group output by
+   feature: `mkdir -p /tmp/patches/<repo>-<feature>` and
+   `outdir=$(mktemp -d /tmp/patches/<repo>-<feature>/<topic>.XXXX)`. Pick a
+   short kebab-case `<feature>` on the first request and reuse it for the rest
+   of the session, unless I name one.
+4. `git format-patch --filename-max-length=40 <base>..HEAD -o "$outdir"` and
+   `git diff <base>..HEAD > "$outdir/combined.diff"` (for review only).
+
+Reply with `$outdir`, `<base>`, one `<file name>: <subject>` line per patch in
+order, and `git diff --stat <base>..HEAD`.
 
 ## Sourcing claims
 - Read primary sources before citing them. Never infer a page's contents from
