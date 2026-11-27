@@ -49,10 +49,12 @@ passing tests.
 1. `git clone <project> <scratch>/<repo>-<topic>`; `<base>` is the project's
    `HEAD`. If uncommitted changes in the project matter, ask first.
 2. Commit each patch in the repo's commit style, subject under 80 characters.
-3. Even if the harness has its own scratch directory, create the output
-   directory with `mkdir -p /tmp/patches` and
-   `outdir=$(mktemp -d /tmp/patches/<repo>-<topic>.XXXX)`.
-4. `git format-patch <base>..HEAD -o "$outdir"` and
+3. Even if the harness has its own scratch directory, group output by
+   feature: `mkdir -p /tmp/patches/<repo>-<feature>` and
+   `outdir=$(mktemp -d /tmp/patches/<repo>-<feature>/<topic>.XXXX)`. Pick a
+   short kebab-case `<feature>` on the first request and reuse it for the rest
+   of the session, unless I name one.
+4. `git format-patch --filename-max-length=40 <base>..HEAD -o "$outdir"` and
    `git diff <base>..HEAD > "$outdir/combined.diff"` (for review only).
 
 Reply with `$outdir`, `<base>`, one `<file name>: <subject>` line per patch in
